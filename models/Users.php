@@ -78,6 +78,21 @@ class Users extends BaseUsers {
         ];
     }
 
+    public static function isAdminRole() {
+        $model = Users::find()
+                        ->select('user.*,auth_item.name as role')
+                        ->leftJoin('auth_assignment', 'auth_assignment.user_id=user.id')
+                        ->leftJoin('auth_item', 'auth_item.name = auth_assignment.item_name')
+                        ->where(['auth_item.type' => 1,
+                            'user.id' => Yii::$app->user->id])->asArray()->all();
+
+
+        if (isset($model) && isset($model[0]) && $model[0]['role'] == Users::ROLE_ADMIN) {
+            return true;
+        }
+        return false;
+    }
+
 //    public static function isAdminRole() {
 //        $model = User::find()
 //                        ->select('user.*,auth_item.name as role')
