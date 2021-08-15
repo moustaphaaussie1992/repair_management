@@ -10,30 +10,48 @@ use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\NavBar;
 use yii\bootstrap\Nav;
+use yii\helpers\Url;
 use yii\web\View;
 
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>" class="h-100">
-    <head>
-        <meta charset="<?= Yii::$app->charset ?>">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <?php $this->registerCsrfMetaTags() ?>
-        <title><?= Html::encode($this->title) ?></title>
-        <?php $this->head() ?>
-    </head>
-    <body class="d-flex flex-column h-100">
-        <?php $this->beginBody() ?>
+<html lang="<?= Yii::$app->language ?>" >
 
-        <header>
+    <?= $this->render('_head'); ?>
+
+    <!--    <body style="
+              background: rgb(119,119,119);
+              background: linear-gradient(90deg, rgba(119,119,119,0.5634628851540616) 7%, rgba(119,119,119,0.47942927170868344) 53%, rgba(119,119,119,0.6502976190476191) 100%);
+              " >-->
+    <body>
+        <?php $this->beginBody() ?>
+        <div class="wrap">
+
+
             <?php
             NavBar::begin([
-                'brandLabel' => Yii::$app->name,
+//                'brandLabel' => Html::img('@web/favicosn.png', [
+//                    'class' => 'img-rounded',
+//                    'style' => [
+//                        'float' => 'left',
+//                        'width' => '49px',
+//                        'height' => '44px',
+//                        'margin-right' => '5px',
+//                        'margin-top' => '-10px',
+//                    ]
+//                ]) . Yii::t('app', 'Get4Less Repair Management System'),
+                'brandLabel' => "Get4Less Repair Management System",
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
+                    'style' => [
+                        'width' => '100%',
+                    ]
+                ],
+                'innerContainerOptions' => [
+                    'class' => 'container',
                 ],
             ]);
             echo Nav::widget([
@@ -66,6 +84,12 @@ AppAsset::register($this);
 //                        ]
 //                )
             ]);
+//            echo "<form class='navbar-form navbar-right' role='search'>
+//       <div class='form-group has-feedback'>
+//            <input id='searchbox' type='text' placeholder='Search' class='form-control'>
+//            <span id='searchicon' class='fa fa-search form-control-feedback'></span>
+//        </div>
+//  </form>";
             if (Users::isAdminRole()) {
                 echo Nav::widget([
                     'options' => ['class' => 'navbar-nav'],
@@ -80,11 +104,11 @@ AppAsset::register($this);
                     ]
                 ]);
             } else {
-                
+
             }
 
             echo Nav::widget([
-                'options' => ['class' => 'navbar-nav', 'style' => ['float' => 'right']],
+                'options' => ['class' => 'navbar', 'style' => ['float' => 'right', 'text-color' => 'white']],
                 'items' => [
                     Yii::$app->user->isGuest ? (
                             ['label' => 'Login', 'url' => ['/site/login']]
@@ -104,28 +128,26 @@ AppAsset::register($this);
 
             NavBar::end();
             ?>
-        </header>
 
-        <main role="main" class="flex-shrink-0">
-            <div class="container">
-                <?=
-                Breadcrumbs::widget([
-                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                ])
-                ?>
-                <?= Alert::widget() ?>
-                <?= $content ?>
-            </div>
-        </main>
 
-        <footer class="footer mt-auto py-3 text-muted">
-            <div class="container">
-                <p class="float-left">&copy; My Company <?= date('Y') ?></p>
-                <p class="float-right"><?= Yii::powered() ?></p>
-            </div>
-        </footer>
+            <main role="main" class="flex-shrink-0">
+                <div class="container">
+                    <?=
+                    Breadcrumbs::widget([
+                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    ])
+                    ?>
+                    <?= Alert::widget() ?>
+                    <?= $content ?>
+                </div>
+            </main>
 
-        <?php $this->endBody() ?>
+
+
+
+            <?php $this->endBody() ?>
     </body>
+
+
 </html>
 <?php $this->endPage() ?>

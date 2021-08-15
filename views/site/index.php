@@ -1,53 +1,153 @@
 <?php
-
 /* @var $this yii\web\View */
-
-$this->title = 'My Yii Application';
 ?>
-<div class="site-index">
+<?php
 
-    <div class="jumbotron text-center bg-transparent">
-        <h1 class="display-4">Congratulations!</h1>
+use richardfan\widget\JSRegister;
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\web\View;
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+/* @var $this View */
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
 
-    <div class="body-content">
+$this->title = 'Get4Less Repair Management System';
+?>
 
+<div style="margin-top: 100px;">
+    <div class="container">
         <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+            <div class="col-md-6">
+                <?=
+                Html::a('<i class="glyphicon glyphicon-folder-open"></i><span class="count-name">New Customer</span>',
+                        ['/customer/create'],
+                        [
+                            'class' => 'card-counter success col-md-12',
+                            'style' => ['border' => 'none']
+                ])
+                ?>
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
+            <div class="col-md-6">
+                <?=
+                Html::a('<i class="	glyphicon glyphicon-cog"></i><span class="count-name">New Job Record</span>',
+                        ['/job-card/create'],
+                        [
+                            'class' => 'card-counter info col-md-12',
+                            'style' => ['border' => 'none']
+                ])
+                ?>
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
 
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+
+            <div class="col-md-6">
+                <?=
+                Html::a('<i class="	glyphicon glyphicon-send"></i><span class="count-name">Transfer To Service Center</span>',
+                        ['/job-card/index'],
+                        [
+                            'class' => 'card-counter primary col-md-12',
+                            'style' => ['border' => 'none']
+                ])
+                ?>
             </div>
+
+
+            <div class="col-md-6">
+                <?=
+                Html::a('<i class="	glyphicon glyphicon-ok"></i><span class="count-name">Ready Items</span>',
+                        ['/job-card/index'],
+                        [
+                            'class' => 'card-counter danger col-md-12',
+                            'style' => ['border' => 'none']
+                ])
+                ?>
+            </div>
+
         </div>
-
     </div>
 </div>
+
+<style>
+
+    .card-counter{
+        box-shadow: 10px 10px 5px #aaaaaa;
+
+        margin: 5px;
+        padding: 20px 10px;
+        background-color: #fff;
+        height: 200px;
+        border-radius: 5px;
+        transition: .3s linear all;
+        text-align: right;
+    }
+
+    .card-counter:hover{
+        box-shadow: 4px 4px 20px #DADADA;
+        transition: .05s linear all;
+    }
+
+    .card-counter.primary{
+        background-color: #004a98;
+        color: #FFF;
+    }
+
+    .card-counter.danger{
+        background-color: #cc0804;
+        color: #FFF;
+    }
+
+    .card-counter.success{
+        background-color: #368c3a;
+        color: #FFF;
+    }
+
+    .card-counter.info{
+        background-color: #0098ab;
+        color: #FFF;
+    }
+
+    .card-counter i{
+        font-size: 7em;
+        opacity: 1;
+        margin-top: 50px;
+        margin-right: 20px;
+    }
+
+    .card-counter .count-numbers{
+        position: absolute;
+        left: 35px;
+        top: 20px;
+        font-size: 32px;
+        display: block;
+    }
+
+    .card-counter .count-name{
+        position: absolute;
+        left: 35px;
+        top: 40px;
+        text-transform: capitalize;
+        opacity: 1;
+        display: block;
+        font-size: 35px;
+    }
+
+</style>
+
+<?php
+JSRegister::begin([
+    'id' => '1',
+    'position' => static::POS_END
+]);
+?>
+
+<script>
+
+
+
+</script>
+
+<?php
+JSRegister::end();
+?>
