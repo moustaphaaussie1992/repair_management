@@ -89,22 +89,23 @@ $this->title = 'Get4Less Repair Management System';
     }
 
     .card-counter.primary{
-        background-color: #004a98;
+        background-color: #632724;
+
         color: #FFF;
     }
 
     .card-counter.danger{
-        background-color: #cc0804;
+        background-color: #923734;
         color: #FFF;
     }
 
     .card-counter.success{
-        background-color: #368c3a;
+        background-color: #a93f3b;
         color: #FFF;
     }
 
     .card-counter.info{
-        background-color: #0098ab;
+        background-color: #ba5754;
         color: #FFF;
     }
 

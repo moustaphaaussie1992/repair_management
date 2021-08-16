@@ -11,13 +11,11 @@ $this->title = Yii::t('rbac-admin', 'Change Password');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="portlet box bg-red col-md-6 col-md-offset-3">
+<div class="portlet box bg-red col-md-6 ">
 
-    <div class="portlet-title">
-        <div class="caption">
-            <?= Html::encode($this->title) ?>
-        </div>
-    </div>
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <p>Please fill out the following fields to Reset Password:</p>
 
     <div class="portlet-body">
         <!--<p class="bold">Please fill out the following fields to change password:</p>-->
@@ -33,8 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->errorSummary($model); ?>
 
+
+
         <div class="form-group">
-            <?= Html::submitButton(Yii::t('rbac-admin', 'Change'), ['class' => 'btn btn-primary', 'name' => 'change-button']) ?>
+            <div class=" col-lg-11">
+                <?= Html::submitButton('Change', ['class' => 'btn btn-primary', 'name' => 'Change-button']) ?>
+            </div>
         </div>
 
         <?php ActiveForm::end(); ?>

@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "item".
  *
  * @property int $id
+ * @property string $name
  * @property string $code
  * @property string $family
  * @property string $subfamily
@@ -30,7 +31,8 @@ class Item extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['code', 'family', 'subfamily'], 'required'],
+            [['name', 'code', 'family', 'subfamily'], 'required'],
+            [['name'], 'string', 'max' => 300],
             [['code', 'family', 'subfamily'], 'string', 'max' => 100],
         ];
     }
@@ -42,6 +44,7 @@ class Item extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'name' => 'Name',
             'code' => 'Code',
             'family' => 'Family',
             'subfamily' => 'Subfamily',
