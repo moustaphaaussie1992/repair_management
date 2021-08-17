@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\ItemSearch */
+/* @var $model app\models\SubsubfamilySearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="item-search">
+<div class="subsubfamily-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -22,13 +22,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name') ?>
 
-    <?= $form->field($model, 'code') ?>
-
-    <?= $form->field($model, 'family') ?>
-
     <?= $form->field($model, 'subfamily') ?>
-
-    <?php // echo $form->field($model, 'subsubfamily') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
