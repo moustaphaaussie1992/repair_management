@@ -44,10 +44,6 @@
                 "rtl",
                 "yii2"
             ],
-            "support": {
-                "issues": "https://github.com/airani/yii2-bootstrap-rtl/issues",
-                "source": "https://github.com/airani/yii2-bootstrap-rtl"
-            },
             "install-path": "../airani/yii2-bootstrap-rtl"
         },
         {
@@ -232,7 +228,7 @@
             "version_normalized": "3.3.11.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:RobinHerbots/Inputmask.git",
+                "url": "https://github.com/RobinHerbots/Inputmask.git",
                 "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b"
             },
             "dist": {
@@ -398,10 +394,6 @@
                 "markdown",
                 "markdown-extra"
             ],
-            "support": {
-                "issues": "https://github.com/cebe/markdown/issues",
-                "source": "https://github.com/cebe/markdown"
-            },
             "install-path": "../cebe/markdown"
         },
         {
@@ -932,10 +924,6 @@
                 }
             ],
             "description": "BDD code blocks for PHPUnit and Codeception",
-            "support": {
-                "issues": "https://github.com/Codeception/Specify/issues",
-                "source": "https://github.com/Codeception/Specify/tree/master"
-            },
             "install-path": "../codeception/specify"
         },
         {
@@ -1266,10 +1254,6 @@
                 "extension",
                 "yii2"
             ],
-            "support": {
-                "issues": "https://github.com/dmstr/yii2-bootstrap/issues",
-                "source": "https://github.com/dmstr/yii2-bootstrap/tree/master"
-            },
             "install-path": "../dmstr/yii2-bootstrap"
         },
         {
@@ -2138,7 +2122,6 @@
                 "shasum": ""
             },
             "time": "2019-09-03T03:12:44+00:00",
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -2170,16 +2153,6 @@
                 "jquery",
                 "option",
                 "select"
-            ],
-            "support": {
-                "issues": "https://github.com/kartik-v/dependent-dropdown/issues",
-                "source": "https://github.com/kartik-v/dependent-dropdown/tree/master"
-            },
-            "funding": [
-                {
-                    "url": "https://opencollective.com/dependent-dropdown",
-                    "type": "open_collective"
-                }
             ],
             "install-path": "../kartik-v/dependent-dropdown"
         },
@@ -2473,10 +2446,6 @@
                 "modal",
                 "yii2"
             ],
-            "support": {
-                "issues": "https://github.com/kartik-v/yii2-dialog/issues",
-                "source": "https://github.com/kartik-v/yii2-dialog/tree/master"
-            },
             "install-path": "../kartik-v/yii2-dialog"
         },
         {
@@ -2923,10 +2892,6 @@
                 "widget",
                 "yii2"
             ],
-            "support": {
-                "issues": "https://github.com/kartik-v/yii2-widget-activeform/issues",
-                "source": "https://github.com/kartik-v/yii2-widget-activeform/tree/master"
-            },
             "install-path": "../kartik-v/yii2-widget-activeform"
         },
         {
@@ -2979,10 +2944,6 @@
                 "widget",
                 "yii2"
             ],
-            "support": {
-                "issues": "https://github.com/kartik-v/yii2-widget-affix/issues",
-                "source": "https://github.com/kartik-v/yii2-widget-affix/tree/master"
-            },
             "install-path": "../kartik-v/yii2-widget-affix"
         },
         {
@@ -3225,10 +3186,6 @@
                 "widget",
                 "yii2"
             ],
-            "support": {
-                "issues": "https://github.com/kartik-v/yii2-widget-datetimepicker/issues",
-                "source": "https://github.com/kartik-v/yii2-widget-datetimepicker/tree/master"
-            },
             "install-path": "../kartik-v/yii2-widget-datetimepicker"
         },
         {
@@ -3286,10 +3243,6 @@
                 "widget",
                 "yii2"
             ],
-            "support": {
-                "issues": "https://github.com/kartik-v/yii2-widget-depdrop/issues",
-                "source": "https://github.com/kartik-v/yii2-widget-depdrop/tree/v1.0.6"
-            },
             "install-path": "../kartik-v/yii2-widget-depdrop"
         },
         {
@@ -3477,10 +3430,6 @@
                 "widget",
                 "yii2"
             ],
-            "support": {
-                "issues": "https://github.com/kartik-v/yii2-widget-rangeinput/issues",
-                "source": "https://github.com/kartik-v/yii2-widget-rangeinput/tree/master"
-            },
             "install-path": "../kartik-v/yii2-widget-rangeinput"
         },
         {
@@ -3540,10 +3489,6 @@
                 "widget",
                 "yii2"
             ],
-            "support": {
-                "issues": "https://github.com/kartik-v/yii2-widget-rating/issues",
-                "source": "https://github.com/kartik-v/yii2-widget-rating/tree/master"
-            },
             "install-path": "../kartik-v/yii2-widget-rating"
         },
         {
@@ -3735,10 +3680,6 @@
                 "widget",
                 "yii2"
             ],
-            "support": {
-                "issues": "https://github.com/kartik-v/yii2-widget-spinner/issues",
-                "source": "https://github.com/kartik-v/yii2-widget-spinner/tree/master"
-            },
             "install-path": "../kartik-v/yii2-widget-spinner"
         },
         {
@@ -3792,10 +3733,6 @@
                 "widget",
                 "yii2"
             ],
-            "support": {
-                "issues": "https://github.com/kartik-v/yii2-widget-switchinput/issues",
-                "source": "https://github.com/kartik-v/yii2-widget-switchinput/tree/master"
-            },
             "install-path": "../kartik-v/yii2-widget-switchinput"
         },
         {
@@ -3853,10 +3790,6 @@
                 "widget",
                 "yii2"
             ],
-            "support": {
-                "issues": "https://github.com/kartik-v/yii2-widget-timepicker/issues",
-                "source": "https://github.com/kartik-v/yii2-widget-timepicker/tree/master"
-            },
             "install-path": "../kartik-v/yii2-widget-timepicker"
         },
         {
@@ -3915,10 +3848,6 @@
                 "widget",
                 "yii2"
             ],
-            "support": {
-                "issues": "https://github.com/kartik-v/yii2-widget-touchspin/issues",
-                "source": "https://github.com/kartik-v/yii2-widget-touchspin/tree/master"
-            },
             "install-path": "../kartik-v/yii2-widget-touchspin"
         },
         {
@@ -3975,10 +3904,6 @@
                 "widget",
                 "yii2"
             ],
-            "support": {
-                "issues": "https://github.com/kartik-v/yii2-widget-typeahead/issues",
-                "source": "https://github.com/kartik-v/yii2-widget-typeahead/tree/master"
-            },
             "install-path": "../kartik-v/yii2-widget-typeahead"
         },
         {
@@ -4049,10 +3974,6 @@
                 "widget",
                 "yii2"
             ],
-            "support": {
-                "issues": "https://github.com/kartik-v/yii2-widgets/issues",
-                "source": "https://github.com/kartik-v/yii2-widgets/tree/master"
-            },
             "install-path": "../kartik-v/yii2-widgets"
         },
         {
@@ -4126,7 +4047,6 @@
                 "shasum": ""
             },
             "time": "2019-06-10T06:44:42+00:00",
-            "default-branch": true,
             "type": "yii2-extension",
             "installation-source": "source",
             "autoload": {
@@ -4156,10 +4076,6 @@
                 "modal",
                 "yii2"
             ],
-            "support": {
-                "issues": "https://github.com/loveorigami/yii2-modal-ajax/issues",
-                "source": "https://github.com/loveorigami/yii2-modal-ajax/tree/3.8"
-            },
             "install-path": "../loveorigami/yii2-modal-ajax"
         },
         {
@@ -4183,7 +4099,6 @@
                 "yiisoft/yii2": "~2.0.5"
             },
             "time": "2019-03-17T02:25:35+00:00",
-            "default-branch": true,
             "type": "yii2-extension",
             "installation-source": "source",
             "autoload": {
@@ -4213,11 +4128,6 @@
                 "yii2 dynamic form",
                 "yii2-dynamicform"
             ],
-            "support": {
-                "issues": "https://github.com/mabentley85/yii2-dynamicform/issues",
-                "source": "https://github.com/mabentley85/yii2-dynamicform",
-                "wiki": "https://github.com/mabentley85/yii2-dynamicform/wiki/"
-            },
             "install-path": "../mabentley85/yii2-dynamicform"
         },
         {
@@ -5000,10 +4910,6 @@
                 "widget",
                 "yii2"
             ],
-            "support": {
-                "issues": "https://github.com/nterms/yii2-pagesize-widget/issues",
-                "source": "https://github.com/nterms/yii2-pagesize-widget/tree/master"
-            },
             "install-path": "../nterms/yii2-pagesize-widget"
         },
         {
@@ -5290,10 +5196,6 @@
                 "config",
                 "yii2"
             ],
-            "support": {
-                "issues": "https://github.com/phemellc/yii2-settings/issues",
-                "source": "https://github.com/phemellc/yii2-settings/tree/master"
-            },
             "install-path": "../pheme/yii2-settings"
         },
         {
@@ -6099,10 +6001,6 @@
             "keywords": [
                 "template"
             ],
-            "support": {
-                "issues": "https://github.com/sebastianbergmann/php-text-template/issues",
-                "source": "https://github.com/sebastianbergmann/php-text-template/tree/1.2.1"
-            },
             "install-path": "../phpunit/php-text-template"
         },
         {
@@ -6650,9 +6548,6 @@
                 "request",
                 "response"
             ],
-            "support": {
-                "source": "https://github.com/php-fig/http-message/tree/master"
-            },
             "install-path": "../psr/http-message"
         },
         {
@@ -6803,10 +6698,6 @@
                 }
             ],
             "description": "A polyfill for getallheaders.",
-            "support": {
-                "issues": "https://github.com/ralouphie/getallheaders/issues",
-                "source": "https://github.com/ralouphie/getallheaders/tree/develop"
-            },
             "install-path": "../ralouphie/getallheaders"
         },
         {
@@ -6853,12 +6744,6 @@
                 "widget",
                 "yii2"
             ],
-            "support": {
-                "email": "richardfan1126@gmail.com",
-                "issues": "https://github.com/richardfan1126/yii2-js-register/issues",
-                "source": "https://github.com/richardfan1126/yii2-js-register/tree/master",
-                "wiki": "https://github.com/richardfan1126/yii2-js-register/wiki"
-            },
             "install-path": "../richardfan1126/yii2-js-register"
         },
         {
@@ -6909,9 +6794,6 @@
             "keywords": [
                 "failure"
             ],
-            "support": {
-                "source": "https://github.com/schmunk42/retry/tree/0.0.1"
-            },
             "install-path": "../schmunk42/retry"
         },
         {
@@ -7745,10 +7627,6 @@
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
-            "support": {
-                "issues": "https://github.com/sebastianbergmann/version/issues",
-                "source": "https://github.com/sebastianbergmann/version/tree/master"
-            },
             "install-path": "../sebastian/version"
         },
         {
@@ -7790,10 +7668,6 @@
             ],
             "description": "Select2 is a jQuery based replacement for select boxes.",
             "homepage": "https://select2.org/",
-            "support": {
-                "issues": "https://github.com/select2/select2/issues",
-                "source": "https://github.com/select2/select2/tree/4.0.13"
-            },
             "install-path": "../select2/select2"
         },
         {
@@ -10004,11 +9878,6 @@
                 "yii2",
                 "yii2-fancytree-widget"
             ],
-            "support": {
-                "issues": "https://github.com/wbraganca/yii2-fancytree-widget/issues",
-                "source": "https://github.com/wbraganca/yii2-fancytree-widget",
-                "wiki": "https://github.com/wbraganca/yii2-fancytree-widget/wiki/"
-            },
             "install-path": "../wbraganca/yii2-fancytree-widget"
         },
         {
@@ -10121,12 +9990,6 @@
                 "static",
                 "yii2"
             ],
-            "support": {
-                "forum": "http://www.yiiframework.com/forum/",
-                "issues": "https://github.com/yii2tech/filedb/issues",
-                "source": "https://github.com/yii2tech/filedb",
-                "wiki": "https://github.com/yii2tech/filedb/wiki"
-            },
             "install-path": "../yii2tech/filedb"
         },
         {
@@ -10930,13 +10793,6 @@
                 "jQuery UI",
                 "yii2"
             ],
-            "support": {
-                "forum": "http://www.yiiframework.com/forum/",
-                "irc": "irc://irc.freenode.net/yii",
-                "issues": "https://github.com/yiisoft/yii2-jui/issues",
-                "source": "https://github.com/yiisoft/yii2-jui",
-                "wiki": "http://www.yiiframework.com/wiki/"
-            },
             "install-path": "../yiisoft/yii2-jui"
         },
         {

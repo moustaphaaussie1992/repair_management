@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => 'fa944f31cb59fb9007735421af54aa7d101d425c',
     'name' => 'yiisoft/yii2-app-basic',
   ),
   'versions' => 
@@ -1548,12 +1548,12 @@
     ),
     'yiisoft/yii2-app-basic' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => 'fa944f31cb59fb9007735421af54aa7d101d425c',
     ),
     'yiisoft/yii2-bootstrap' => 
     array (

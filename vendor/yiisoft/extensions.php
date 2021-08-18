@@ -3,51 +3,6 @@
 $vendorDir = dirname(__DIR__);
 
 return array (
-  'yiisoft/yii2-bootstrap4' => 
-  array (
-    'name' => 'yiisoft/yii2-bootstrap4',
-    'version' => '2.0.10.0',
-    'alias' => 
-    array (
-      '@yii/bootstrap4' => $vendorDir . '/yiisoft/yii2-bootstrap4/src',
-    ),
-  ),
-  'yiisoft/yii2-debug' => 
-  array (
-    'name' => 'yiisoft/yii2-debug',
-    'version' => '2.1.18.0',
-    'alias' => 
-    array (
-      '@yii/debug' => $vendorDir . '/yiisoft/yii2-debug/src',
-    ),
-  ),
-  'yiisoft/yii2-faker' => 
-  array (
-    'name' => 'yiisoft/yii2-faker',
-    'version' => '2.0.5.0',
-    'alias' => 
-    array (
-      '@yii/faker' => $vendorDir . '/yiisoft/yii2-faker/src',
-    ),
-  ),
-  'yiisoft/yii2-gii' => 
-  array (
-    'name' => 'yiisoft/yii2-gii',
-    'version' => '2.2.3.0',
-    'alias' => 
-    array (
-      '@yii/gii' => $vendorDir . '/yiisoft/yii2-gii/src',
-    ),
-  ),
-  'yiisoft/yii2-swiftmailer' => 
-  array (
-    'name' => 'yiisoft/yii2-swiftmailer',
-    'version' => '2.1.2.0',
-    'alias' => 
-    array (
-      '@yii/swiftmailer' => $vendorDir . '/yiisoft/yii2-swiftmailer/src',
-    ),
-  ),
   'airani/yii2-bootstrap-rtl' => 
   array (
     'name' => 'airani/yii2-bootstrap-rtl',
@@ -55,6 +10,204 @@ return array (
     'alias' => 
     array (
       '@airani/bootstrap' => $vendorDir . '/airani/yii2-bootstrap-rtl',
+    ),
+  ),
+  'kartik-v/yii2-dialog' => 
+  array (
+    'name' => 'kartik-v/yii2-dialog',
+    'version' => '1.0.5.0',
+    'alias' => 
+    array (
+      '@kartik/dialog' => $vendorDir . '/kartik-v/yii2-dialog/src',
+    ),
+  ),
+  'kartik-v/yii2-widget-typeahead' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-typeahead',
+    'version' => '1.0.4.0',
+    'alias' => 
+    array (
+      '@kartik/typeahead' => $vendorDir . '/kartik-v/yii2-widget-typeahead/src',
+    ),
+  ),
+  'kartik-v/yii2-widget-touchspin' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-touchspin',
+    'version' => '1.2.3.0',
+    'alias' => 
+    array (
+      '@kartik/touchspin' => $vendorDir . '/kartik-v/yii2-widget-touchspin/src',
+    ),
+  ),
+  'kartik-v/yii2-widget-timepicker' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-timepicker',
+    'version' => '1.0.4.0',
+    'alias' => 
+    array (
+      '@kartik/time' => $vendorDir . '/kartik-v/yii2-widget-timepicker/src',
+    ),
+  ),
+  'kartik-v/yii2-widget-switchinput' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-switchinput',
+    'version' => '1.3.1.0',
+    'alias' => 
+    array (
+      '@kartik/switchinput' => $vendorDir . '/kartik-v/yii2-widget-switchinput',
+    ),
+  ),
+  'kartik-v/yii2-widget-spinner' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-spinner',
+    'version' => '1.0.1.0',
+    'alias' => 
+    array (
+      '@kartik/spinner' => $vendorDir . '/kartik-v/yii2-widget-spinner/src',
+    ),
+  ),
+  'kartik-v/yii2-widget-rating' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-rating',
+    'version' => '1.0.4.0',
+    'alias' => 
+    array (
+      '@kartik/rating' => $vendorDir . '/kartik-v/yii2-widget-rating/src',
+    ),
+  ),
+  'kartik-v/yii2-widget-rangeinput' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-rangeinput',
+    'version' => '1.0.2.0',
+    'alias' => 
+    array (
+      '@kartik/range' => $vendorDir . '/kartik-v/yii2-widget-rangeinput/src',
+    ),
+  ),
+  'kartik-v/yii2-widget-depdrop' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-depdrop',
+    'version' => '1.0.6.0',
+    'alias' => 
+    array (
+      '@kartik/depdrop' => $vendorDir . '/kartik-v/yii2-widget-depdrop/src',
+    ),
+  ),
+  'kartik-v/yii2-widget-datetimepicker' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-datetimepicker',
+    'version' => '1.4.9.0',
+    'alias' => 
+    array (
+      '@kartik/datetime' => $vendorDir . '/kartik-v/yii2-widget-datetimepicker/src',
+    ),
+  ),
+  'kartik-v/yii2-widget-affix' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-affix',
+    'version' => '1.0.0.0',
+    'alias' => 
+    array (
+      '@kartik/affix' => $vendorDir . '/kartik-v/yii2-widget-affix',
+    ),
+  ),
+  'kartik-v/yii2-widget-activeform' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-activeform',
+    'version' => '1.5.8.0',
+    'alias' => 
+    array (
+      '@kartik/form' => $vendorDir . '/kartik-v/yii2-widget-activeform/src',
+    ),
+  ),
+  'kartik-v/yii2-widgets' => 
+  array (
+    'name' => 'kartik-v/yii2-widgets',
+    'version' => '3.4.1.0',
+    'alias' => 
+    array (
+      '@kartik/widgets' => $vendorDir . '/kartik-v/yii2-widgets/src',
+    ),
+  ),
+  'yiisoft/yii2-jui' => 
+  array (
+    'name' => 'yiisoft/yii2-jui',
+    'version' => '2.0.7.0',
+    'alias' => 
+    array (
+      '@yii/jui' => $vendorDir . '/yiisoft/yii2-jui',
+    ),
+  ),
+  'loveorigami/yii2-modal-ajax' => 
+  array (
+    'name' => 'loveorigami/yii2-modal-ajax',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@lo/widgets/modal' => $vendorDir . '/loveorigami/yii2-modal-ajax/src',
+    ),
+  ),
+  'mabentley85/yii2-dynamicform' => 
+  array (
+    'name' => 'mabentley85/yii2-dynamicform',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@mabentley85/dynamicform' => $vendorDir . '/mabentley85/yii2-dynamicform/src',
+    ),
+  ),
+  'nterms/yii2-pagesize-widget' => 
+  array (
+    'name' => 'nterms/yii2-pagesize-widget',
+    'version' => '2.0.1.0',
+    'alias' => 
+    array (
+      '@nterms/pagesize' => $vendorDir . '/nterms/yii2-pagesize-widget',
+    ),
+  ),
+  'richardfan1126/yii2-js-register' => 
+  array (
+    'name' => 'richardfan1126/yii2-js-register',
+    'version' => '0.0.1.0',
+    'alias' => 
+    array (
+      '@richardfan/widget' => $vendorDir . '/richardfan1126/yii2-js-register',
+    ),
+  ),
+  'dmstr/yii2-bootstrap' => 
+  array (
+    'name' => 'dmstr/yii2-bootstrap',
+    'version' => '0.2.2.0',
+    'alias' => 
+    array (
+      '@dmstr/bootstrap' => $vendorDir . '/dmstr/yii2-bootstrap',
+    ),
+  ),
+  'wbraganca/yii2-fancytree-widget' => 
+  array (
+    'name' => 'wbraganca/yii2-fancytree-widget',
+    'version' => '1.0.1.0',
+    'alias' => 
+    array (
+      '@wbraganca/fancytree' => $vendorDir . '/wbraganca/yii2-fancytree-widget/src',
+    ),
+  ),
+  'pheme/yii2-settings' => 
+  array (
+    'name' => 'pheme/yii2-settings',
+    'version' => '0.7.0.0',
+    'alias' => 
+    array (
+      '@pheme/settings' => $vendorDir . '/pheme/yii2-settings',
+    ),
+  ),
+  'yii2tech/filedb' => 
+  array (
+    'name' => 'yii2tech/filedb',
+    'version' => '1.0.6.0',
+    'alias' => 
+    array (
+      '@yii2tech/filedb' => $vendorDir . '/yii2tech/filedb/src',
     ),
   ),
   'codemix/yii2-excelexport' => 
@@ -111,15 +264,6 @@ return array (
       '@kartik/select2' => $vendorDir . '/kartik-v/yii2-widget-select2/src',
     ),
   ),
-  'kartik-v/yii2-widget-activeform' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-activeform',
-    'version' => '1.5.8.0',
-    'alias' => 
-    array (
-      '@kartik/form' => $vendorDir . '/kartik-v/yii2-widget-activeform/src',
-    ),
-  ),
   'kartik-v/yii2-sortable' => 
   array (
     'name' => 'kartik-v/yii2-sortable',
@@ -127,15 +271,6 @@ return array (
     'alias' => 
     array (
       '@kartik/sortable' => $vendorDir . '/kartik-v/yii2-sortable/src',
-    ),
-  ),
-  'kartik-v/yii2-dialog' => 
-  array (
-    'name' => 'kartik-v/yii2-dialog',
-    'version' => '1.0.5.0',
-    'alias' => 
-    array (
-      '@kartik/dialog' => $vendorDir . '/kartik-v/yii2-dialog/src',
     ),
   ),
   'kartik-v/yii2-bootstrap4-dropdown' => 
@@ -174,51 +309,6 @@ return array (
       '@kartik/export' => $vendorDir . '/kartik-v/yii2-export/src',
     ),
   ),
-  'kartik-v/yii2-widget-typeahead' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-typeahead',
-    'version' => '1.0.4.0',
-    'alias' => 
-    array (
-      '@kartik/typeahead' => $vendorDir . '/kartik-v/yii2-widget-typeahead/src',
-    ),
-  ),
-  'kartik-v/yii2-widget-touchspin' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-touchspin',
-    'version' => '1.2.3.0',
-    'alias' => 
-    array (
-      '@kartik/touchspin' => $vendorDir . '/kartik-v/yii2-widget-touchspin/src',
-    ),
-  ),
-  'kartik-v/yii2-widget-timepicker' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-timepicker',
-    'version' => '1.0.4.0',
-    'alias' => 
-    array (
-      '@kartik/time' => $vendorDir . '/kartik-v/yii2-widget-timepicker/src',
-    ),
-  ),
-  'kartik-v/yii2-widget-switchinput' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-switchinput',
-    'version' => '1.3.1.0',
-    'alias' => 
-    array (
-      '@kartik/switchinput' => $vendorDir . '/kartik-v/yii2-widget-switchinput',
-    ),
-  ),
-  'kartik-v/yii2-widget-spinner' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-spinner',
-    'version' => '1.0.1.0',
-    'alias' => 
-    array (
-      '@kartik/spinner' => $vendorDir . '/kartik-v/yii2-widget-spinner/src',
-    ),
-  ),
   'kartik-v/yii2-widget-sidenav' => 
   array (
     'name' => 'kartik-v/yii2-widget-sidenav',
@@ -226,24 +316,6 @@ return array (
     'alias' => 
     array (
       '@kartik/sidenav' => $vendorDir . '/kartik-v/yii2-widget-sidenav',
-    ),
-  ),
-  'kartik-v/yii2-widget-rating' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-rating',
-    'version' => '1.0.4.0',
-    'alias' => 
-    array (
-      '@kartik/rating' => $vendorDir . '/kartik-v/yii2-widget-rating/src',
-    ),
-  ),
-  'kartik-v/yii2-widget-rangeinput' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-rangeinput',
-    'version' => '1.0.2.0',
-    'alias' => 
-    array (
-      '@kartik/range' => $vendorDir . '/kartik-v/yii2-widget-rangeinput/src',
     ),
   ),
   'kartik-v/yii2-widget-growl' => 
@@ -262,24 +334,6 @@ return array (
     'alias' => 
     array (
       '@kartik/file' => $vendorDir . '/kartik-v/yii2-widget-fileinput/src',
-    ),
-  ),
-  'kartik-v/yii2-widget-depdrop' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-depdrop',
-    'version' => '1.0.6.0',
-    'alias' => 
-    array (
-      '@kartik/depdrop' => $vendorDir . '/kartik-v/yii2-widget-depdrop/src',
-    ),
-  ),
-  'kartik-v/yii2-widget-datetimepicker' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-datetimepicker',
-    'version' => '1.4.9.0',
-    'alias' => 
-    array (
-      '@kartik/datetime' => $vendorDir . '/kartik-v/yii2-widget-datetimepicker/src',
     ),
   ),
   'kartik-v/yii2-widget-datepicker' => 
@@ -309,33 +363,6 @@ return array (
       '@kartik/alert' => $vendorDir . '/kartik-v/yii2-widget-alert/src',
     ),
   ),
-  'kartik-v/yii2-widget-affix' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-affix',
-    'version' => '1.0.0.0',
-    'alias' => 
-    array (
-      '@kartik/affix' => $vendorDir . '/kartik-v/yii2-widget-affix',
-    ),
-  ),
-  'kartik-v/yii2-widgets' => 
-  array (
-    'name' => 'kartik-v/yii2-widgets',
-    'version' => '3.4.1.0',
-    'alias' => 
-    array (
-      '@kartik/widgets' => $vendorDir . '/kartik-v/yii2-widgets/src',
-    ),
-  ),
-  'yiisoft/yii2-jui' => 
-  array (
-    'name' => 'yiisoft/yii2-jui',
-    'version' => '2.0.7.0',
-    'alias' => 
-    array (
-      '@yii/jui' => $vendorDir . '/yiisoft/yii2-jui',
-    ),
-  ),
   'yiisoft/yii2-bootstrap' => 
   array (
     'name' => 'yiisoft/yii2-bootstrap',
@@ -352,24 +379,6 @@ return array (
     'alias' => 
     array (
       '@lajax/translatemanager' => $vendorDir . '/lajax/yii2-translate-manager',
-    ),
-  ),
-  'loveorigami/yii2-modal-ajax' => 
-  array (
-    'name' => 'loveorigami/yii2-modal-ajax',
-    'version' => 'dev-master',
-    'alias' => 
-    array (
-      '@lo/widgets/modal' => $vendorDir . '/loveorigami/yii2-modal-ajax/src',
-    ),
-  ),
-  'mabentley85/yii2-dynamicform' => 
-  array (
-    'name' => 'mabentley85/yii2-dynamicform',
-    'version' => 'dev-master',
-    'alias' => 
-    array (
-      '@mabentley85/dynamicform' => $vendorDir . '/mabentley85/yii2-dynamicform/src',
     ),
   ),
   'marekpetras/yii2-calendarview-widget' => 
@@ -399,15 +408,6 @@ return array (
       '@moonland/phpexcel' => $vendorDir . '/moonlandsoft/yii2-phpexcel',
     ),
   ),
-  'nterms/yii2-pagesize-widget' => 
-  array (
-    'name' => 'nterms/yii2-pagesize-widget',
-    'version' => '2.0.1.0',
-    'alias' => 
-    array (
-      '@nterms/pagesize' => $vendorDir . '/nterms/yii2-pagesize-widget',
-    ),
-  ),
   'pheme/yii2-toggle-column' => 
   array (
     'name' => 'pheme/yii2-toggle-column',
@@ -415,15 +415,6 @@ return array (
     'alias' => 
     array (
       '@pheme/grid' => $vendorDir . '/pheme/yii2-toggle-column',
-    ),
-  ),
-  'pheme/yii2-settings' => 
-  array (
-    'name' => 'pheme/yii2-settings',
-    'version' => '0.7.0.0',
-    'alias' => 
-    array (
-      '@pheme/settings' => $vendorDir . '/pheme/yii2-settings',
     ),
   ),
   'philippfrenzel/yii2fullcalendar' => 
@@ -435,13 +426,13 @@ return array (
       '@yii2fullcalendar' => $vendorDir . '/philippfrenzel/yii2fullcalendar',
     ),
   ),
-  'richardfan1126/yii2-js-register' => 
+  'yiisoft/yii2-gii' => 
   array (
-    'name' => 'richardfan1126/yii2-js-register',
-    'version' => '0.0.1.0',
+    'name' => 'yiisoft/yii2-gii',
+    'version' => '2.2.3.0',
     'alias' => 
     array (
-      '@richardfan/widget' => $vendorDir . '/richardfan1126/yii2-js-register',
+      '@yii/gii' => $vendorDir . '/yiisoft/yii2-gii/src',
     ),
   ),
   'dmstr/yii2-helpers' => 
@@ -465,15 +456,6 @@ return array (
       '@dmstr/widgets' => $vendorDir . '/dmstr/yii2-db/widgets',
     ),
   ),
-  'dmstr/yii2-bootstrap' => 
-  array (
-    'name' => 'dmstr/yii2-bootstrap',
-    'version' => '0.2.2.0',
-    'alias' => 
-    array (
-      '@dmstr/bootstrap' => $vendorDir . '/dmstr/yii2-bootstrap',
-    ),
-  ),
   'schmunk42/yii2-giiant' => 
   array (
     'name' => 'schmunk42/yii2-giiant',
@@ -484,22 +466,31 @@ return array (
     ),
     'bootstrap' => 'schmunk42\\giiant\\Bootstrap',
   ),
-  'wbraganca/yii2-fancytree-widget' => 
+  'yiisoft/yii2-bootstrap4' => 
   array (
-    'name' => 'wbraganca/yii2-fancytree-widget',
-    'version' => '1.0.1.0',
+    'name' => 'yiisoft/yii2-bootstrap4',
+    'version' => '2.0.10.0',
     'alias' => 
     array (
-      '@wbraganca/fancytree' => $vendorDir . '/wbraganca/yii2-fancytree-widget/src',
+      '@yii/bootstrap4' => $vendorDir . '/yiisoft/yii2-bootstrap4/src',
     ),
   ),
-  'yii2tech/filedb' => 
+  'yiisoft/yii2-debug' => 
   array (
-    'name' => 'yii2tech/filedb',
-    'version' => '1.0.6.0',
+    'name' => 'yiisoft/yii2-debug',
+    'version' => '2.1.18.0',
     'alias' => 
     array (
-      '@yii2tech/filedb' => $vendorDir . '/yii2tech/filedb/src',
+      '@yii/debug' => $vendorDir . '/yiisoft/yii2-debug/src',
+    ),
+  ),
+  'yiisoft/yii2-faker' => 
+  array (
+    'name' => 'yiisoft/yii2-faker',
+    'version' => '2.0.5.0',
+    'alias' => 
+    array (
+      '@yii/faker' => $vendorDir . '/yiisoft/yii2-faker/src',
     ),
   ),
   'yiisoft/yii2-httpclient' => 
@@ -509,6 +500,15 @@ return array (
     'alias' => 
     array (
       '@yii/httpclient' => $vendorDir . '/yiisoft/yii2-httpclient/src',
+    ),
+  ),
+  'yiisoft/yii2-swiftmailer' => 
+  array (
+    'name' => 'yiisoft/yii2-swiftmailer',
+    'version' => '2.1.2.0',
+    'alias' => 
+    array (
+      '@yii/swiftmailer' => $vendorDir . '/yiisoft/yii2-swiftmailer/src',
     ),
   ),
 );
