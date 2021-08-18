@@ -35,6 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'family',
             'subfamily',
             'subsubfamily',
+            'brand_id',
         ],
     ]) ?>
 

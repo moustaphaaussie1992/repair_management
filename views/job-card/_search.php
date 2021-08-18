@@ -24,19 +24,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'branch_id') ?>
 
-    <?= $form->field($model, 'item_id') ?>
-
-    <?= $form->field($model, 'cost') ?>
-
-    <?php // echo $form->field($model, 'warranty') ?>
-
-    <?php // echo $form->field($model, 'warranty_type') ?>
-
-    <?php // echo $form->field($model, 'status') ?>
-
-    <?php // echo $form->field($model, 'current_location') ?>
-
-    <?php // echo $form->field($model, 'description') ?>
+    <?= $form->field($model, 'done') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

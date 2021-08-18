@@ -2,73 +2,71 @@
 
 namespace app\controllers;
 
-use app\models\JobCard;
-use app\models\JobCardItemsSearch;
-use app\models\JobCardSearch;
-use yii\filters\VerbFilter;
+use app\models\Brand;
+use app\models\BrandSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
 
 /**
- * JobCardController implements the CRUD actions for JobCard model.
+ * BrandController implements the CRUD actions for Brand model.
  */
-class JobCardController extends Controller {
-
+class BrandController extends Controller
+{
     /**
      * @inheritDoc
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         return array_merge(
-                parent::behaviors(),
-                [
-                    'verbs' => [
-                        'class' => VerbFilter::className(),
-                        'actions' => [
-                            'delete' => ['POST'],
-                        ],
+            parent::behaviors(),
+            [
+                'verbs' => [
+                    'class' => VerbFilter::className(),
+                    'actions' => [
+                        'delete' => ['POST'],
                     ],
-                ]
+                ],
+            ]
         );
     }
 
     /**
-     * Lists all JobCard models.
+     * Lists all Brand models.
      * @return mixed
      */
-    public function actionIndex() {
-        $searchModel = new JobCardSearch();
+    public function actionIndex()
+    {
+        $searchModel = new BrandSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single JobCard model.
+     * Displays a single Brand model.
      * @param int $id ID
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id) {
+    public function actionView($id)
+    {
         return $this->render('view', [
-                    'model' => $this->findModel($id),
+            'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new JobCard model.
+     * Creates a new Brand model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate() {
-        $model = new JobCard();
-
-        $searchModel = new JobCardItemsSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
-
-
+    public function actionCreate()
+    {
+        $model = new Brand();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -79,20 +77,19 @@ class JobCardController extends Controller {
         }
 
         return $this->render('create', [
-                    'model' => $model,
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
+            'model' => $model,
         ]);
     }
 
     /**
-     * Updates an existing JobCard model.
+     * Updates an existing Brand model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id) {
+    public function actionUpdate($id)
+    {
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -100,36 +97,37 @@ class JobCardController extends Controller {
         }
 
         return $this->render('update', [
-                    'model' => $model,
+            'model' => $model,
         ]);
     }
 
     /**
-     * Deletes an existing JobCard model.
+     * Deletes an existing Brand model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id) {
+    public function actionDelete($id)
+    {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the JobCard model based on its primary key value.
+     * Finds the Brand model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return JobCard the loaded model
+     * @return Brand the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id) {
-        if (($model = JobCard::findOne($id)) !== null) {
+    protected function findModel($id)
+    {
+        if (($model = Brand::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
 }

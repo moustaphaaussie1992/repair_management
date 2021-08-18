@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\ItemSearch */
+/* @var $model app\models\JobCardItemsSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="item-search">
+<div class="job-card-items-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -20,17 +20,21 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'name') ?>
+    <?= $form->field($model, 'job_card_id') ?>
 
-    <?= $form->field($model, 'code') ?>
+    <?= $form->field($model, 'item_id') ?>
 
-    <?= $form->field($model, 'family') ?>
+    <?= $form->field($model, 'cost') ?>
 
-    <?= $form->field($model, 'subfamily') ?>
+    <?= $form->field($model, 'warranty') ?>
 
-    <?php // echo $form->field($model, 'subsubfamily') ?>
+    <?php // echo $form->field($model, 'warranty_type') ?>
 
-    <?php // echo $form->field($model, 'brand_id') ?>
+    <?php // echo $form->field($model, 'status') ?>
+
+    <?php // echo $form->field($model, 'current_location') ?>
+
+    <?php // echo $form->field($model, 'description') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

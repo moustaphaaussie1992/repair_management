@@ -17,8 +17,7 @@ class JobCardSearch extends JobCard
     public function rules()
     {
         return [
-            [['id', 'customer_id', 'branch_id', 'item_id', 'cost', 'warranty', 'warranty_type', 'status', 'current_location'], 'integer'],
-            [['description'], 'safe'],
+            [['id', 'customer_id', 'branch_id', 'done'], 'integer'],
         ];
     }
 
@@ -61,15 +60,8 @@ class JobCardSearch extends JobCard
             'id' => $this->id,
             'customer_id' => $this->customer_id,
             'branch_id' => $this->branch_id,
-            'item_id' => $this->item_id,
-            'cost' => $this->cost,
-            'warranty' => $this->warranty,
-            'warranty_type' => $this->warranty_type,
-            'status' => $this->status,
-            'current_location' => $this->current_location,
+            'done' => $this->done,
         ]);
-
-        $query->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

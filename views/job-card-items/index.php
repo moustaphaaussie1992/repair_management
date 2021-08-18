@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\JobCardSearch */
+/* @var $searchModel app\models\JobCardItemsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Job Cards';
+$this->title = 'Job Card Items';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="job-card-index">
+<div class="job-card-items-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Job Card', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Job Card Items', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -28,9 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'customer_id',
-            'branch_id',
-            'done',
+            'job_card_id',
+            'item_id',
+            'cost',
+            'warranty',
+            //'warranty_type',
+            //'status',
+            //'current_location',
+            //'description:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

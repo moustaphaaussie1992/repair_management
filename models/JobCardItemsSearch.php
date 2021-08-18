@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Item;
+use app\models\JobCardItems;
 
 /**
- * ItemSearch represents the model behind the search form of `app\models\Item`.
+ * JobCardItemsSearch represents the model behind the search form of `app\models\JobCardItems`.
  */
-class ItemSearch extends Item
+class JobCardItemsSearch extends JobCardItems
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class ItemSearch extends Item
     public function rules()
     {
         return [
-            [['id', 'family', 'subfamily', 'subsubfamily', 'brand_id'], 'integer'],
-            [['name', 'code'], 'safe'],
+            [['id', 'job_card_id', 'item_id', 'cost', 'warranty', 'warranty_type', 'status', 'current_location'], 'integer'],
+            [['description'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class ItemSearch extends Item
      */
     public function search($params)
     {
-        $query = Item::find();
+        $query = JobCardItems::find();
 
         // add conditions that should always apply here
 
@@ -59,14 +59,16 @@ class ItemSearch extends Item
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'family' => $this->family,
-            'subfamily' => $this->subfamily,
-            'subsubfamily' => $this->subsubfamily,
-            'brand_id' => $this->brand_id,
+            'job_card_id' => $this->job_card_id,
+            'item_id' => $this->item_id,
+            'cost' => $this->cost,
+            'warranty' => $this->warranty,
+            'warranty_type' => $this->warranty_type,
+            'status' => $this->status,
+            'current_location' => $this->current_location,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'code', $this->code]);
+        $query->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

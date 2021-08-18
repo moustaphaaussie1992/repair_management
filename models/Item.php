@@ -13,8 +13,11 @@ use Yii;
  * @property int $family
  * @property int $subfamily
  * @property int $subsubfamily
+ * @property int $brand_id
  *
+ * @property Brand $brand
  * @property Family $family0
+ * @property JobCardItems[] $jobCardItems
  * @property JobCard[] $jobCards
  * @property Subfamily $subfamily0
  * @property Subsubfamily $subsubfamily0
@@ -35,13 +38,14 @@ class Item extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'code', 'family', 'subfamily', 'subsubfamily'], 'required'],
-            [['family', 'subfamily', 'subsubfamily'], 'integer'],
+            [['name', 'code', 'family', 'subfamily', 'subsubfamily', 'brand_id'], 'required'],
+            [['family', 'subfamily', 'subsubfamily', 'brand_id'], 'integer'],
             [['name'], 'string', 'max' => 300],
             [['code'], 'string', 'max' => 100],
             [['family'], 'exist', 'skipOnError' => true, 'targetClass' => Family::className(), 'targetAttribute' => ['family' => 'id']],
             [['subfamily'], 'exist', 'skipOnError' => true, 'targetClass' => Subfamily::className(), 'targetAttribute' => ['subfamily' => 'id']],
             [['subsubfamily'], 'exist', 'skipOnError' => true, 'targetClass' => Subsubfamily::className(), 'targetAttribute' => ['subsubfamily' => 'id']],
+            [['brand_id'], 'exist', 'skipOnError' => true, 'targetClass' => Brand::className(), 'targetAttribute' => ['brand_id' => 'id']],
         ];
     }
 
@@ -57,7 +61,18 @@ class Item extends \yii\db\ActiveRecord
             'family' => 'Family',
             'subfamily' => 'Subfamily',
             'subsubfamily' => 'Subsubfamily',
+            'brand_id' => 'Brand ID',
         ];
+    }
+
+    /**
+     * Gets query for [[Brand]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBrand()
+    {
+        return $this->hasOne(Brand::className(), ['id' => 'brand_id']);
     }
 
     /**
@@ -71,13 +86,23 @@ class Item extends \yii\db\ActiveRecord
     }
 
     /**
+     * Gets query for [[JobCardItems]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getJobCardItems()
+    {
+        return $this->hasMany(JobCardItems::className(), ['item_id' => 'id']);
+    }
+
+    /**
      * Gets query for [[JobCards]].
      *
      * @return \yii\db\ActiveQuery
      */
     public function getJobCards()
     {
-        return $this->hasMany(JobCard::className(), ['item_id' => 'id']);
+        return $this->hasMany(JobCard::className(), ['id' => 'job_card_id'])->viaTable('job_card_items', ['item_id' => 'id']);
     }
 
     /**

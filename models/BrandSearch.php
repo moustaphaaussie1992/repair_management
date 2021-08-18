@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Item;
+use app\models\Brand;
 
 /**
- * ItemSearch represents the model behind the search form of `app\models\Item`.
+ * BrandSearch represents the model behind the search form of `app\models\Brand`.
  */
-class ItemSearch extends Item
+class BrandSearch extends Brand
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class ItemSearch extends Item
     public function rules()
     {
         return [
-            [['id', 'family', 'subfamily', 'subsubfamily', 'brand_id'], 'integer'],
-            [['name', 'code'], 'safe'],
+            [['id'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class ItemSearch extends Item
      */
     public function search($params)
     {
-        $query = Item::find();
+        $query = Brand::find();
 
         // add conditions that should always apply here
 
@@ -59,14 +59,9 @@ class ItemSearch extends Item
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'family' => $this->family,
-            'subfamily' => $this->subfamily,
-            'subsubfamily' => $this->subsubfamily,
-            'brand_id' => $this->brand_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'code', $this->code]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }
