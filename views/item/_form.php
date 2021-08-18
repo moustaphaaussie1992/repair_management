@@ -12,11 +12,17 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'family')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'family')->textInput() ?>
 
-    <?= $form->field($model, 'subfamily')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'subfamily')->textInput() ?>
+
+    <?= $form->field($model, 'subsubfamily')->textInput() ?>
+
+    <?= $form->field($model, 'brand_id')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

@@ -17,8 +17,8 @@ class ItemSearch extends Item
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['code', 'family', 'subfamily'], 'safe'],
+            [['id', 'family', 'subfamily', 'subsubfamily', 'brand_id'], 'integer'],
+            [['name', 'code'], 'safe'],
         ];
     }
 
@@ -59,11 +59,14 @@ class ItemSearch extends Item
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'family' => $this->family,
+            'subfamily' => $this->subfamily,
+            'subsubfamily' => $this->subsubfamily,
+            'brand_id' => $this->brand_id,
         ]);
 
-        $query->andFilterWhere(['like', 'code', $this->code])
-            ->andFilterWhere(['like', 'family', $this->family])
-            ->andFilterWhere(['like', 'subfamily', $this->subfamily]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'code', $this->code]);
 
         return $dataProvider;
     }

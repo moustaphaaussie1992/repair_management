@@ -32,13 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'customer_id',
             'branch_id',
-            'item_id',
-            'cost',
-            'warranty',
-            'warranty_type',
-            'status',
-            'current_location',
-            'description:ntext',
+            'done',
         ],
     ]) ?>
 

@@ -41,7 +41,8 @@
         "kartik-v/yii2-date-range": "dev-master",
         "yiisoft/yii2-httpclient": "~2.0.0",
         "codemix/yii2-excelexport": "^2.7",
-        "moonlandsoft/yii2-phpexcel": "*"
+        "moonlandsoft/yii2-phpexcel": "*",
+        "kartik-v/yii2-checkbox-x": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

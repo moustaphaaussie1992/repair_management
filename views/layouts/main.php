@@ -2,50 +2,54 @@
 /* @var $this View */
 /* @var $content string */
 
-use app\assets\AppAsset;
+use app\assets\MetronicAsset;
+use app\assets\MetronicRtlAsset;
+use app\components\LanguageSwitcher;
 use app\models\Users;
 use app\widgets\Alert;
 use mdm\admin\components\MenuHelper;
-use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\NavBar;
 use yii\bootstrap\Nav;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\View;
 
-AppAsset::register($this);
+//AppAsset::register($this);
+if (LanguageSwitcher::isRtl()) {
+    MetronicRtlAsset::register($this);
+} else {
+    MetronicAsset::register($this);
+}
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" >
 
-    <?= $this->render('_head'); ?>
+<?= $this->render('_head'); ?>
 
-    <!--    <body style="
-              background: rgb(119,119,119);
-              background: linear-gradient(90deg, rgba(119,119,119,0.5634628851540616) 7%, rgba(119,119,119,0.47942927170868344) 53%, rgba(119,119,119,0.6502976190476191) 100%);
-              " >-->
-    <body>
-        <?php $this->beginBody() ?>
+
+    <body   style='background-image: url("<?= Url::base() . '/bg13.jpg' ?>"); background-size: cover;'>
+<?php $this->beginBody() ?>
         <div class="wrap">
 
 
             <?php
             NavBar::begin([
-//                'brandLabel' => Html::img('@web/favicosn.png', [
-//                    'class' => 'img-rounded',
-//                    'style' => [
-//                        'float' => 'left',
-//                        'width' => '49px',
-//                        'height' => '44px',
-//                        'margin-right' => '5px',
-//                        'margin-top' => '-10px',
-//                    ]
-//                ]) . Yii::t('app', 'Get4Less Repair Management System'),
+                'brandLabel' => Html::img('@web/favicon.png', [
+                    'class' => 'img-rounded',
+                    'style' => [
+                        'float' => 'left',
+                        'width' => '49px',
+                        'height' => '44px',
+                        'margin-right' => '5px',
+                        'margin-top' => '-10px',
+                    ]
+                ]) . Yii::t('app', 'Get4Less Repair Management System'),
                 'brandLabel' => "Get4Less Repair Management System",
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
-                    'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
+                    'class' => 'navbar navbar-inverse navbar-expand-md navbar-dark bg-dark fixed-top',
                     'style' => [
                         'width' => '100%',
                     ]
@@ -54,100 +58,98 @@ AppAsset::register($this);
                     'class' => 'container',
                 ],
             ]);
-            echo Nav::widget([
-                'options' => ['class' => 'navbar-nav'],
-                'items' =>
-//                ArrayHelper::merge(
-                MenuHelper::getAssignedMenu(Yii::$app->user->id)
-//                        , []
-//                        [
-//                    ['label' => "Special", 'url' => '#',
-//                        'items' => [
-//                            ['label' => 'Home', 'url' => ['/site/index']],
-//                            ['label' => 'Users', 'url' => ['/users/index']],
-//                            ['label' => Yii::t("app", "Change Password"), 'url' => ['users/change-password']],
-//                        ]
-//                    ],
-//                        ]
-//                        , [
-//                    Yii::$app->user->isGuest ? (
-//                            ['label' => 'Login', 'url' => ['/site/login']]
-//                            ) : (
-//                            '<li>'
-//                            . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
-//                            . Html::submitButton(
-//                                    'Logout (' . Yii::$app->user->identity->username . ')', ['class' => 'btn btn-link logout']
-//                            )
-//                            . Html::endForm()
-//                            . '</li>'
-//                            )
-//                        ]
-//                )
-            ]);
-//            echo "<form class='navbar-form navbar-right' role='search'>
-//       <div class='form-group has-feedback'>
-//            <input id='searchbox' type='text' placeholder='Search' class='form-control'>
-//            <span id='searchicon' class='fa fa-search form-control-feedback'></span>
-//        </div>
-//  </form>";
-            if (Users::isAdminRole()) {
-                echo Nav::widget([
-                    'options' => ['class' => 'navbar-nav'],
-                    'items' => [
-                        ['label' => "Special", 'url' => '#',
-                            'items' => [
-                                ['label' => 'Home', 'url' => ['/site/index']],
-                                ['label' => 'Users', 'url' => ['/users/index']],
-                                ['label' => Yii::t("app", "Change Password"), 'url' => ['users/change-password']],
-                            ]
-                        ],
-                    ]
-                ]);
-            } else {
 
-            }
 
             echo Nav::widget([
-                'options' => ['class' => 'navbar', 'style' => ['float' => 'right', 'text-color' => 'white']],
-                'items' => [
+                'options' => [
+                    'class' => 'navbar-nav navbar-right',
+                    'id' => 'my-navbar-nav',
+                ],
+                'items' => ArrayHelper::merge(MenuHelper::getAssignedMenu(Yii::$app->user->id), [
+                        ], Yii::$app->user->id == 1 ?
+                                [(
+                            ['label' => Yii::t("app", "Special"), 'url' => '#',
+                                'items' => [
+                                    ['label' => Yii::t("app", "Change Password"), 'url' => ['users/change-password']],
+                                    ['label' => Yii::t("app", "Users"), 'url' => ['/users/index']],
+//                                    ['label' => Yii::t("app", "Employees"), 'url' => ['/user-employee/index']],
+//                                    ['label' => Yii::t("app", "المندوبين"), 'url' => ['/delegate/index']],
+//                                    ['label' => Yii::t("app", "Rbac"), 'url' => ['/admin']],
+//                                        ['label' => Yii::t("app", "Translate"), 'url' => ['/translatemanager/language/list']],
+                                ]
+                            ] )] : [( Users::isAdminRole() == true ?
+                                    ['label' => Yii::t("app", "Special"), 'url' => '#',
+                                'items' => [
+                                    ['label' => Yii::t("app", "Change Password"), 'url' => ['users/change-password']],
+                                    ['label' => Yii::t("app", "Users"), 'url' => ['/users/index']],
+//                                    ['label' => Yii::t("app", "Employees"), 'url' => ['/user-employee/index']],
+                                ]
+                                    ] : ['label' => Yii::t("app", "Change Password"), 'url' => ['users/change-password']] )], [
                     Yii::$app->user->isGuest ? (
-                            ['label' => 'Login', 'url' => ['/site/login']]
+                            ['label' => Yii::t("app", "Login"), 'url' => ['/site/login']]
                             ) : (
                             '<li>'
-                            . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
+                            . Html::beginForm(['/site/logout'], 'post')
                             . Html::submitButton(
-                                    'Logout (' . Yii::$app->user->identity->username . ')', ['class' => 'btn btn-link logout']
+                                    Yii::t('app', 'Logout') . ' (' . Yii::$app->user->identity->username . ')', ['class' => 'btn btn-link logout', 'style' => 'padding-top: 15px;padding-bottom: 15px;line-height: 20px;color: #9d9d9d !important']
                             )
                             . Html::endForm()
                             . '</li>'
                             )
-                ]
+                        ]
+//                        , [languageSwitcher::Widget()]
+                )
             ]);
-
-
-
             NavBar::end();
             ?>
-
-
-            <main role="main" class="flex-shrink-0">
-                <div class="container">
-                    <?=
-                    Breadcrumbs::widget([
-                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                    ])
-                    ?>
-                    <?= Alert::widget() ?>
-                    <?= $content ?>
-                </div>
-            </main>
+            <div class="container" style="width: 80%;">
 
 
 
+                <?php
+//                echo SideNav::widget([
+//                    'type' => SideNav::TYPE_DEFAULT,
+//                    'heading' => '',
+//                    'items' =>
+//                    MenuHelper::getAssignedMenu(Yii::$app->user->id)
+////                    [
+////                            [
+////                            'url' => '#',
+////                            'label' => 'Home',
+////                            'icon' => 'home'
+////                        ],
+////                            [
+////                            'label' => 'Help',
+////                            'icon' => 'question-sign',
+////                            'items' => [
+////                                    ['label' => 'About', 'icon' => 'info-sign', 'url' => '#'],
+////                                    ['label' => 'Contact', 'icon' => 'phone', 'url' => '#'],
+////                            ],
+////                        ],
+////                    ],
+//                ]);
+//                echo Breadcrumbs::widget([
+//                    'homeLink' => [
+//                        'label' => Yii::t('yii', 'Dashboard'),
+//                        'url' => Yii::$app->homeUrl,
+//                    ],
+//                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+//                ])
+                ?>
+                <?= Alert::widget() ?>
+<?= $content ?>
+            </div>
+        </div>
+        <!--        <footer class="footer yii-debug-toolbar  " style=" position:fixed;bottom:4px ;text-align:left;width:96px;transition:width .3s ease;" >
+                    <div class="container">
+                        <p class="pull-left"><?php // Yii::t('app', 'Temp App') . ' &copy; ' . date('Y')                 ?></p>
+                    </div>
+                </footer>-->
 
-            <?php $this->endBody() ?>
+
+
+<?php $this->endBody() ?>
     </body>
-
 
 </html>
 <?php $this->endPage() ?>

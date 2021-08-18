@@ -11,10 +11,14 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="job-card-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
+
+    <?=
+    $this->render('_form', [
         'model' => $model,
-    ]) ?>
+        'searchModel' => $searchModel,
+        'dataProvider' => $dataProvider,
+    ])
+    ?>
 
 </div>

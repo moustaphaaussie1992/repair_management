@@ -3,31 +3,31 @@
 namespace app\controllers;
 
 use app\models\JobCard;
+use app\models\JobCardItemsSearch;
 use app\models\JobCardSearch;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * JobCardController implements the CRUD actions for JobCard model.
  */
-class JobCardController extends Controller
-{
+class JobCardController extends Controller {
+
     /**
      * @inheritDoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+                parent::behaviors(),
+                [
+                    'verbs' => [
+                        'class' => VerbFilter::className(),
+                        'actions' => [
+                            'delete' => ['POST'],
+                        ],
                     ],
-                ],
-            ]
+                ]
         );
     }
 
@@ -35,14 +35,13 @@ class JobCardController extends Controller
      * Lists all JobCard models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $searchModel = new JobCardSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -52,10 +51,9 @@ class JobCardController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),
         ]);
     }
 
@@ -64,9 +62,13 @@ class JobCardController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new JobCard();
+
+        $searchModel = new JobCardItemsSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+
+
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -77,7 +79,9 @@ class JobCardController extends Controller
         }
 
         return $this->render('create', [
-            'model' => $model,
+                    'model' => $model,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -88,8 +92,7 @@ class JobCardController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -97,7 +100,7 @@ class JobCardController extends Controller
         }
 
         return $this->render('update', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -108,8 +111,7 @@ class JobCardController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -122,12 +124,12 @@ class JobCardController extends Controller
      * @return JobCard the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = JobCard::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
 }
