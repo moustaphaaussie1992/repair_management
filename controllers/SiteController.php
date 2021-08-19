@@ -2,21 +2,24 @@
 
 namespace app\controllers;
 
+use app\models\Brand;
+use app\models\ContactForm;
+use app\models\Item;
+use app\models\LoginForm;
+use moonland\phpexcel\Excel;
 use Yii;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
+use const YII_ENV_TEST;
 
-class SiteController extends Controller
-{
+class SiteController extends Controller {
+
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -41,8 +44,7 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function actions()
-    {
+    public function actions() {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
@@ -59,8 +61,135 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
+
+//        $data = Excel::import($fileName); // $config is an optional
+//        $data = Excel::import('Item List (2).xlsx', [
+//                    'setFirstRecordAsKeys' => true, // if you want to set the keys of record column with first record, if it not set, the header with use the alphabet column on excel. 
+//                    'setIndexSheetByName' => true, // set this if your excel data with multiple worksheet, the index of array will be set with the sheet name. If this not set, the index will use numeric. 
+//                    'getOnlySheet' => 'Brand', // you can set this property if you want to get the specified sheet from the excel data with multiple worksheet.
+//        ]);
+//        $dataItems = Excel::import('Item List (2).xlsx', [
+//                    'setFirstRecordAsKeys' => true, // if you want to set the keys of record column with first record, if it not set, the header with use the alphabet column on excel. 
+//                    'setIndexSheetByName' => true, // set this if your excel data with multiple worksheet, the index of array will be set with the sheet name. If this not set, the index will use numeric. 
+//                    'getOnlySheet' => 'Family', // you can set this property if you want to get the specified sheet from the excel data with multiple worksheet.
+//        ]);
+//        VarDumper::dump($dataItems, 3, true);
+//        die();
+
+//        $dataItems = Item::find()->asArray()->all();
+
+
+//        for ($j = 0; $j < sizeof($dataItems); $j++) {
+//            $itemCode = $dataItems[$j]["code"];
+//            $id = $dataItems[$j]["id"];
+//
+////            \yii\helpers\VarDumper::dump($itemCode, 3, true);
+////            die();
+//
+//            for ($i = 0; $i < sizeof($data); $i++) {
+//                $brandName = $data[$i]["Brand Name"];
+//                $brandItemCode = $data[$i]["Item Code"];
+//                if ($itemCode == $brandItemCode) {
+//                    $brand = Brand::findOne(["name" => $brandName]);
+//                    $itemmm = Item::findOne(["id" => $id]);
+//                    if ($itemmm) {
+//                        $itemmm->brand_id = $brand->primaryKey;
+//                        if ($itemmm->save()) {
+//                            
+//                        } else {
+//                            \yii\helpers\VarDumper::dump($itemmm->errors, 3, true);
+//                        }
+//                    }
+//                }
+//            }
+//        }
+
+//        for ($i = 0; $i < sizeof($data); $i++) {
+//            $brandName = $data[$i]["Brand Name"];
+//            $brandItemCode = $data[$i]["Item Code"];
+//
+//            $brand = Brand::findOne([""]);
+//        }
+//        for ($i = 0; $i < sizeof($data); $i++) {
+//
+//            $model = Brand::findOne(["name" => $data[$i]["Brand Name"]]);
+//            if (!$model) {
+//                $brand = new Brand();
+//                $brand->name = $data[$i]["Brand Name"];
+//                if($brand->save()){
+//                    
+//                }else{
+//                    VarDumper::dump($brand->errors,3,true);
+//                    die();
+//                }
+//            }
+//        }
+//        for ($i = 0; $i < sizeof($data); $i++) {
+//            $family = $data[$i]["family"];
+//            $family2 = $data[$i]["family2"];
+//            $family3 = $data[$i]["family3"];
+//            $itemCode = $data[$i]["Item Code"];
+//            $itemName = $data[$i]["Item Name"];
+//
+//
+//            $familyModel = Family::findOne(["name" => $family]);
+//            if (!$familyModel) {
+//                $familyModel = new Family();
+//                $familyModel->name = $family;
+//                if ($familyModel->save()) {
+//                    
+//                } else {
+//                    VarDumper::dump($familyModel->errors, 3, true);
+//                }
+//            }
+//            $familyId = $familyModel->primaryKey;
+//
+//            $subFamilyModel = Subfamily::findOne(["name" => $family2]);
+//            if (!$subFamilyModel) {
+//                $subFamilyModel = new Subfamily();
+//                $subFamilyModel->name = $family2;
+//                $subFamilyModel->family = $familyId;
+//                if ($subFamilyModel->save()) {
+//                    
+//                } else {
+//                    VarDumper::dump($subFamilyModel->errors, 3, true);
+//                }
+//            }
+//            $subFamilyId = $subFamilyModel->primaryKey;
+//
+//
+//            $subSubFamilyModel = Subsubfamily::findOne(["name" => $family3]);
+//            if (!$subSubFamilyModel) {
+//                $subSubFamilyModel = new Subsubfamily();
+//                $subSubFamilyModel->name = $family3;
+//                $subSubFamilyModel->subfamily = $subFamilyId;
+//                if ($subSubFamilyModel->save()) {
+//                    
+//                } else {
+//                    VarDumper::dump($subSubFamilyModel->errors, 3, true);
+//                }
+//            }
+//            $subSubFamilyId = $subSubFamilyModel->primaryKey;
+//
+//
+//            $item = new Item;
+//            $item->family = $familyId;
+//            $item->subfamily = $subFamilyId;
+//            $item->subsubfamily = $subSubFamilyId;
+//            $item->name = $itemName;
+//            $item->code = $itemCode. "";
+////            $item->brand_id
+//            if ($item->save()) {
+//                
+//            } else {
+//                VarDumper::dump($item->errors, 3, true);
+//            }
+//        }
+//        return "success";
+//        VarDumper::dump($data, 3, true);
+//        die();
+
         return $this->render('index');
     }
 
@@ -69,8 +198,7 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
-    public function actionLogin()
-    {
+    public function actionLogin() {
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -82,7 +210,7 @@ class SiteController extends Controller
 
         $model->password = '';
         return $this->render('login', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -91,8 +219,7 @@ class SiteController extends Controller
      *
      * @return Response
      */
-    public function actionLogout()
-    {
+    public function actionLogout() {
         Yii::$app->user->logout();
 
         return $this->goHome();
@@ -103,8 +230,7 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
-    public function actionContact()
-    {
+    public function actionContact() {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
@@ -112,7 +238,7 @@ class SiteController extends Controller
             return $this->refresh();
         }
         return $this->render('contact', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -121,8 +247,8 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionAbout()
-    {
+    public function actionAbout() {
         return $this->render('about');
     }
+
 }

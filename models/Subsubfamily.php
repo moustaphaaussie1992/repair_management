@@ -13,24 +13,23 @@ use Yii;
  *
  * @property Subfamily $subfamily0
  */
-class Subsubfamily extends \yii\db\ActiveRecord
-{
+class Subsubfamily extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'subsubfamily';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['name', 'subfamily'], 'required'],
-            [['name', 'subfamily'], 'integer'],
+            [['subfamily'], 'integer'],
+            [['name'], 'string', 'max' => 100],
             [['subfamily'], 'exist', 'skipOnError' => true, 'targetClass' => Subfamily::className(), 'targetAttribute' => ['subfamily' => 'id']],
         ];
     }
@@ -38,8 +37,7 @@ class Subsubfamily extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'name' => 'Name',
@@ -52,8 +50,8 @@ class Subsubfamily extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getSubfamily0()
-    {
+    public function getSubfamily0() {
         return $this->hasOne(Subfamily::className(), ['id' => 'subfamily']);
     }
+
 }
