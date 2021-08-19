@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\JobCard;
 use app\models\JobCardItemsSearch;
 use app\models\JobCardSearch;
+use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -134,7 +135,13 @@ class JobCardController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionDelete($id) {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+
+        try {
+            $model->delete();
+        } catch (\yii\db\Exception $ex) {
+            Yii::$app->session->setFlash('error', "Job Card has items cannot delete");
+        }
 
         return $this->redirect(['index']);
     }
