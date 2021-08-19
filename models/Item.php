@@ -22,21 +22,19 @@ use Yii;
  * @property Subfamily $subfamily0
  * @property Subsubfamily $subsubfamily0
  */
-class Item extends \yii\db\ActiveRecord
-{
+class Item extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'item';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['name', 'code', 'family', 'subfamily', 'subsubfamily', 'brand_id'], 'required'],
             [['family', 'subfamily', 'subsubfamily', 'brand_id'], 'integer'],
@@ -52,8 +50,7 @@ class Item extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'name' => 'Name',
@@ -70,8 +67,7 @@ class Item extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getBrand()
-    {
+    public function getBrand() {
         return $this->hasOne(Brand::className(), ['id' => 'brand_id']);
     }
 
@@ -80,8 +76,7 @@ class Item extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getFamily0()
-    {
+    public function getFamily0() {
         return $this->hasOne(Family::className(), ['id' => 'family']);
     }
 
@@ -90,8 +85,7 @@ class Item extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getJobCardItems()
-    {
+    public function getJobCardItems() {
         return $this->hasMany(JobCardItems::className(), ['item_id' => 'id']);
     }
 
@@ -100,8 +94,7 @@ class Item extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getJobCards()
-    {
+    public function getJobCards() {
         return $this->hasMany(JobCard::className(), ['id' => 'job_card_id'])->viaTable('job_card_items', ['item_id' => 'id']);
     }
 
@@ -110,8 +103,7 @@ class Item extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getSubfamily0()
-    {
+    public function getSubfamily0() {
         return $this->hasOne(Subfamily::className(), ['id' => 'subfamily']);
     }
 
@@ -120,8 +112,8 @@ class Item extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getSubsubfamily0()
-    {
+    public function getSubsubfamily0() {
         return $this->hasOne(Subsubfamily::className(), ['id' => 'subsubfamily']);
     }
+
 }
