@@ -45,7 +45,7 @@ $this->title = 'Get4Less Repair Management System';
             <div class="col-md-6">
                 <?=
                 Html::a('<i class="	glyphicon glyphicon-send"></i><span class="count-name">Transfer To Service Center</span>',
-                        ['/job-card/index'],
+                        ['/job-card/transfer'],
                         [
                             'class' => 'card-counter primary col-md-12',
                             'style' => ['border' => 'none']
@@ -57,7 +57,7 @@ $this->title = 'Get4Less Repair Management System';
             <div class="col-md-6">
                 <?=
                 Html::a('<i class="	glyphicon glyphicon-ok"></i><span class="count-name">Ready Items</span>',
-                        ['/job-card/index'],
+                        ['/job-card/indexready'],
                         [
                             'class' => 'card-counter danger col-md-12',
                             'style' => ['border' => 'none']

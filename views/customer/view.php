@@ -1,15 +1,19 @@
 <?php
 
+use app\models\Customer;
+use yii\grid\DataColumn;
 use yii\helpers\Html;
+use yii\web\View;
+use yii\web\YiiAsset;
 use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Customer */
+/* @var $this View */
+/* @var $model Customer */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Customers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
+YiiAsset::register($this);
 ?>
 <div class="customer-view">
 
@@ -17,25 +21,51 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?=
+        Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
-        ]) ?>
+        ])
+        ?>
     </p>
 
-    <?= DetailView::widget([
+    <?=
+    DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+//            'id',
             'name',
             'email:email',
             'phone',
-            'salesman',
-            'know_us_from',
+            [
+                'class' => DataColumn::className(),
+                'attribute' => 'salesman',
+                'value' => function ($model) {
+                    if ($rel = $model->salesman0) {
+                        return Html::a($rel->name, ['salesman/view', 'id' => $rel->id,], ['data-pjax' => 0]);
+                    } else {
+                        return '';
+                    }
+                },
+                'format' => 'raw',
+            ],
+            [
+                'class' => DataColumn::className(),
+                'attribute' => 'know_us_from',
+                'value' => function ($model) {
+                    if ($rel = $model->knowUsFrom) {
+                        return Html::a($rel->name, ['social/view', 'id' => $rel->id,], ['data-pjax' => 0]);
+                    } else {
+                        return '';
+                    }
+                },
+                'format' => 'raw',
+            ],
         ],
-    ]) ?>
+    ])
+    ?>
 
 </div>

@@ -63,7 +63,7 @@ $this->title = 'New Job Card';
                 ])->label("Branch");
                 ?>
                 <div class="form-group">
-                    <?= Html::a('Add Item', ['job-card-items/create'], ['class' => 'btn btn-danger']) ?>
+
                     <?= Html::submitButton('Save', ['class' => 'btn btn-success pull-right']) ?>
                 </div>
 
@@ -71,36 +71,6 @@ $this->title = 'New Job Card';
         </div>
 
 
-        <div class="job-card-items-index">
-
-
-
-            <?php Pjax::begin(); ?>
-
-
-            <?=
-            GridView::widget([
-                'dataProvider' => $dataProvider,
-                'filterModel' => $searchModel,
-                'columns' => [
-                    ['class' => 'yii\grid\SerialColumn'],
-                    'id',
-                    'job_card_id',
-                    'item_id',
-                    'cost',
-                    'warranty',
-                    'warranty_type',
-                    'status',
-                    'current_location',
-                    'description:ntext',
-                    ['class' => 'yii\grid\ActionColumn'],
-                ],
-            ]);
-            ?>
-
-            <?php Pjax::end(); ?>
-
-        </div>
 
     </div>
 

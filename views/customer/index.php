@@ -1,11 +1,16 @@
 <?php
 
-use yii\helpers\Html;
+use app\models\CustomerSearch;
+use yii\data\ActiveDataProvider;
+use yii\grid\DataColumn;
 use yii\grid\GridView;
+use yii\helpers\Html;
+use yii\web\View;
 use yii\widgets\Pjax;
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\CustomerSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+
+/* @var $this View */
+/* @var $searchModel CustomerSearch */
+/* @var $dataProvider ActiveDataProvider */
 
 $this->title = 'Customers';
 $this->params['breadcrumbs'][] = $this->title;
@@ -19,24 +24,46 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
 
-    <?= GridView::widget([
+    <?=
+    GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
+//            'id',
             'name',
             'email:email',
             'phone',
-            'salesman',
-            //'know_us_from',
-
+            [
+                'class' => DataColumn::className(),
+                'attribute' => 'salesman',
+                'value' => function ($model) {
+                    if ($rel = $model->salesman0) {
+                        return Html::a($rel->name, ['salesman/view', 'id' => $rel->id,], ['data-pjax' => 0]);
+                    } else {
+                        return '';
+                    }
+                },
+                'format' => 'raw',
+            ],
+            [
+                'class' => DataColumn::className(),
+                'attribute' => 'know_us_from',
+                'value' => function ($model) {
+                    if ($rel = $model->knowUsFrom) {
+                        return Html::a($rel->name, ['social/view', 'id' => $rel->id,], ['data-pjax' => 0]);
+                    } else {
+                        return '';
+                    }
+                },
+                'format' => 'raw',
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]);
+    ?>
 
     <?php Pjax::end(); ?>
 

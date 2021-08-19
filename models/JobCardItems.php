@@ -23,23 +23,21 @@ use Yii;
  * @property Status $status0
  * @property WarrantyType $warrantyType
  */
-class JobCardItems extends \yii\db\ActiveRecord
-{
+class JobCardItems extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'job_card_items';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['job_card_id', 'item_id', 'cost', 'warranty', 'warranty_type', 'status', 'current_location', 'description'], 'required'],
+            [['job_card_id', 'item_id', 'warranty', 'status', 'current_location', 'description'], 'required'],
             [['job_card_id', 'item_id', 'cost', 'warranty', 'warranty_type', 'status', 'current_location'], 'integer'],
             [['description'], 'string'],
             [['job_card_id', 'item_id'], 'unique', 'targetAttribute' => ['job_card_id', 'item_id']],
@@ -54,8 +52,7 @@ class JobCardItems extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'job_card_id' => 'Job Card ID',
@@ -74,8 +71,7 @@ class JobCardItems extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getCurrentLocation()
-    {
+    public function getCurrentLocation() {
         return $this->hasOne(Location::className(), ['id' => 'current_location']);
     }
 
@@ -84,8 +80,7 @@ class JobCardItems extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getItem()
-    {
+    public function getItem() {
         return $this->hasOne(Item::className(), ['id' => 'item_id']);
     }
 
@@ -94,8 +89,7 @@ class JobCardItems extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getJobCard()
-    {
+    public function getJobCard() {
         return $this->hasOne(JobCard::className(), ['id' => 'job_card_id']);
     }
 
@@ -104,8 +98,7 @@ class JobCardItems extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getStatus0()
-    {
+    public function getStatus0() {
         return $this->hasOne(Status::className(), ['id' => 'status']);
     }
 
@@ -114,8 +107,8 @@ class JobCardItems extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getWarrantyType()
-    {
+    public function getWarrantyType() {
         return $this->hasOne(WarrantyType::className(), ['id' => 'warranty_type']);
     }
+
 }

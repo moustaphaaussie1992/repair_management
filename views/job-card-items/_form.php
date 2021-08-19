@@ -1,32 +1,79 @@
 <?php
 
+use app\models\Item;
+use app\models\JobCardItems;
+use app\models\WarrantyType;
+use kartik\widgets\Select2;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\web\View;
 use yii\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\JobCardItems */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $this View */
+/* @var $model JobCardItems */
+/* @var $form ActiveForm */
 ?>
 
 <div class="job-card-items-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'job_card_id')->textInput() ?>
+    <?php //$form->field($model, 'job_card_id')->textInput() ?>
 
-    <?= $form->field($model, 'item_id')->textInput() ?>
 
-    <?= $form->field($model, 'cost')->textInput() ?>
+    <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $form->field($model, 'warranty')->textInput() ?>
+    <?=
+    $form->field($model, 'item_id')->widget(Select2::classname(), [
+        'data' => ArrayHelper::map(Item::find()->all(), 'id', function($model) {
+                    return $model['code'] . "/" . $model['name'];
+                }),
+        'options' => [
+//            'id' => 'test',
+            'placeholder' => Yii::t("app", "Select "),
+//            'dir' => 'rtl',
+        ],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ])->label("Item");
+    ?>
 
-    <?= $form->field($model, 'warranty_type')->textInput() ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
 
-    <?= $form->field($model, 'current_location')->textInput() ?>
+    <?=
+    $form->field($model, 'warranty')->widget(kartik\checkbox\CheckboxX::className(), [
+//        'name' => 's_1',
+//        'options' => ['id' => 's_1'],
+        'pluginOptions' => ['threeState' => false]
+    ]);
+    ?>
+
+
+
+
+    <?=
+    $form->field($model, 'warranty_type')->widget(Select2::classname(), [
+        'data' => ArrayHelper::map(WarrantyType::find()->all(), 'id', function($model) {
+                    return $model['name'];
+                }),
+        'options' => [
+//            'id' => 'test',
+            'placeholder' => Yii::t("app", "Select "),
+//            'dir' => 'rtl',
+        ],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ])->label("Warranty Type");
+    ?>
+
+    <?php // $form->field($model, 'status')->textInput() ?>
+
+    <?php // $form->field($model, 'current_location')->textInput() ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'cost')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

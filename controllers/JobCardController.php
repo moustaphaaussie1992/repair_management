@@ -45,6 +45,26 @@ class JobCardController extends Controller {
         ]);
     }
 
+    public function actionIndexready() {
+        $searchModel = new JobCardSearch();
+        $dataProvider = $searchModel->readysearch($this->request->queryParams);
+
+        return $this->render('index', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionTransfer() {
+        $searchModel = new JobCardSearch();
+        $dataProvider = $searchModel->needfixsearch($this->request->queryParams);
+
+        return $this->render('transfer', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+        ]);
+    }
+
     /**
      * Displays a single JobCard model.
      * @param int $id ID
@@ -52,8 +72,14 @@ class JobCardController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id) {
+
+        $searchModel = new JobCardItemsSearch();
+        $dataProvider = $searchModel->mysearch($this->request->queryParams, $id);
+
         return $this->render('view', [
                     'model' => $this->findModel($id),
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -65,8 +91,6 @@ class JobCardController extends Controller {
     public function actionCreate() {
         $model = new JobCard();
 
-        $searchModel = new JobCardItemsSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
 
 
 
@@ -80,8 +104,6 @@ class JobCardController extends Controller {
 
         return $this->render('create', [
                     'model' => $model,
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
         ]);
     }
 
