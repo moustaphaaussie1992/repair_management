@@ -173,7 +173,7 @@
             "version": "3.6.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jquery/jquery-dist.git",
+                "url": "https://github.com/jquery/jquery-dist.git",
                 "reference": "e786e3d9707ffd9b0dd330ca135b66344dcef85a"
             },
             "dist": {
@@ -965,16 +965,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v2.19.1",
+            "version": "v2.19.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "1fa4af92841f67362c053728989b262fba8eb1ec"
+                "reference": "d5c737c2e18ba502b75b44832b31fe627f82e307"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/1fa4af92841f67362c053728989b262fba8eb1ec",
-                "reference": "1fa4af92841f67362c053728989b262fba8eb1ec",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/d5c737c2e18ba502b75b44832b31fe627f82e307",
+                "reference": "d5c737c2e18ba502b75b44832b31fe627f82e307",
                 "shasum": ""
             },
             "require": {
@@ -1062,7 +1062,7 @@
             "description": "A tool to automatically fix PHP code style",
             "support": {
                 "issues": "https://github.com/FriendsOfPHP/PHP-CS-Fixer/issues",
-                "source": "https://github.com/FriendsOfPHP/PHP-CS-Fixer/tree/v2.19.1"
+                "source": "https://github.com/FriendsOfPHP/PHP-CS-Fixer/tree/v2.19.2"
             },
             "funding": [
                 {
@@ -1070,7 +1070,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-08-02T17:52:09+00:00"
+            "time": "2021-08-18T19:55:46+00:00"
         },
         {
             "name": "kartik-v/bootstrap-checkbox-x",
@@ -5022,12 +5022,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmunk42/yii2-giiant.git",
-                "reference": "7ab6a28c64e10e8bb44291cb795b294be83d76d1"
+                "reference": "c18c83fe1cd827ad0c0d546b1679028f0f39dd90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmunk42/yii2-giiant/zipball/7ab6a28c64e10e8bb44291cb795b294be83d76d1",
-                "reference": "7ab6a28c64e10e8bb44291cb795b294be83d76d1",
+                "url": "https://api.github.com/repos/schmunk42/yii2-giiant/zipball/c18c83fe1cd827ad0c0d546b1679028f0f39dd90",
+                "reference": "c18c83fe1cd827ad0c0d546b1679028f0f39dd90",
                 "shasum": ""
             },
             "require": {
@@ -5042,7 +5042,7 @@
             "require-dev": {
                 "codeception/codeception": "^2.2",
                 "codeception/specify": "^0.4",
-                "dmstr/yii2-web": "^0.4.2",
+                "dmstr/yii2-web": "^0.4.2 || ^1.0.0",
                 "insolita/yii2-adminlte-widgets": "1.1.*",
                 "rmrevin/yii2-fontawesome": "2.*",
                 "yiisoft/yii2-faker": "2.*"
@@ -5081,9 +5081,9 @@
             ],
             "support": {
                 "issues": "https://github.com/schmunk42/yii2-giiant/issues",
-                "source": "https://github.com/schmunk42/yii2-giiant/tree/0.13.0-beta2"
+                "source": "https://github.com/schmunk42/yii2-giiant/tree/0.13.0"
             },
-            "time": "2021-02-03T08:33:22+00:00"
+            "time": "2021-08-19T14:35:17+00:00"
         },
         {
             "name": "select2/select2",
