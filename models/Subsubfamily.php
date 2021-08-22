@@ -54,4 +54,15 @@ class Subsubfamily extends \yii\db\ActiveRecord {
         return $this->hasOne(Subfamily::className(), ['id' => 'subfamily']);
     }
 
+    public function getSubsubfamiliesbyfamily($subfamily) {
+
+
+
+        $subsubfamily = \app\models\Subsubfamily::find()
+                ->select('*')
+                ->where(['subfamily' => $subfamily])
+                ->all();
+        return $subsubfamily;
+    }
+
 }

@@ -2,11 +2,9 @@
 
 namespace app\controllers;
 
-use app\models\Brand;
 use app\models\ContactForm;
-use app\models\Item;
 use app\models\LoginForm;
-use moonland\phpexcel\Excel;
+use app\models\Users;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -65,21 +63,18 @@ class SiteController extends Controller {
 
 //        $data = Excel::import($fileName); // $config is an optional
 //        $data = Excel::import('Item List (2).xlsx', [
-//                    'setFirstRecordAsKeys' => true, // if you want to set the keys of record column with first record, if it not set, the header with use the alphabet column on excel. 
-//                    'setIndexSheetByName' => true, // set this if your excel data with multiple worksheet, the index of array will be set with the sheet name. If this not set, the index will use numeric. 
+//                    'setFirstRecordAsKeys' => true, // if you want to set the keys of record column with first record, if it not set, the header with use the alphabet column on excel.
+//                    'setIndexSheetByName' => true, // set this if your excel data with multiple worksheet, the index of array will be set with the sheet name. If this not set, the index will use numeric.
 //                    'getOnlySheet' => 'Brand', // you can set this property if you want to get the specified sheet from the excel data with multiple worksheet.
 //        ]);
 //        $dataItems = Excel::import('Item List (2).xlsx', [
-//                    'setFirstRecordAsKeys' => true, // if you want to set the keys of record column with first record, if it not set, the header with use the alphabet column on excel. 
-//                    'setIndexSheetByName' => true, // set this if your excel data with multiple worksheet, the index of array will be set with the sheet name. If this not set, the index will use numeric. 
+//                    'setFirstRecordAsKeys' => true, // if you want to set the keys of record column with first record, if it not set, the header with use the alphabet column on excel.
+//                    'setIndexSheetByName' => true, // set this if your excel data with multiple worksheet, the index of array will be set with the sheet name. If this not set, the index will use numeric.
 //                    'getOnlySheet' => 'Family', // you can set this property if you want to get the specified sheet from the excel data with multiple worksheet.
 //        ]);
 //        VarDumper::dump($dataItems, 3, true);
 //        die();
-
 //        $dataItems = Item::find()->asArray()->all();
-
-
 //        for ($j = 0; $j < sizeof($dataItems); $j++) {
 //            $itemCode = $dataItems[$j]["code"];
 //            $id = $dataItems[$j]["id"];
@@ -96,7 +91,7 @@ class SiteController extends Controller {
 //                    if ($itemmm) {
 //                        $itemmm->brand_id = $brand->primaryKey;
 //                        if ($itemmm->save()) {
-//                            
+//
 //                        } else {
 //                            \yii\helpers\VarDumper::dump($itemmm->errors, 3, true);
 //                        }
@@ -104,7 +99,6 @@ class SiteController extends Controller {
 //                }
 //            }
 //        }
-
 //        for ($i = 0; $i < sizeof($data); $i++) {
 //            $brandName = $data[$i]["Brand Name"];
 //            $brandItemCode = $data[$i]["Item Code"];
@@ -118,7 +112,7 @@ class SiteController extends Controller {
 //                $brand = new Brand();
 //                $brand->name = $data[$i]["Brand Name"];
 //                if($brand->save()){
-//                    
+//
 //                }else{
 //                    VarDumper::dump($brand->errors,3,true);
 //                    die();
@@ -138,7 +132,7 @@ class SiteController extends Controller {
 //                $familyModel = new Family();
 //                $familyModel->name = $family;
 //                if ($familyModel->save()) {
-//                    
+//
 //                } else {
 //                    VarDumper::dump($familyModel->errors, 3, true);
 //                }
@@ -151,7 +145,7 @@ class SiteController extends Controller {
 //                $subFamilyModel->name = $family2;
 //                $subFamilyModel->family = $familyId;
 //                if ($subFamilyModel->save()) {
-//                    
+//
 //                } else {
 //                    VarDumper::dump($subFamilyModel->errors, 3, true);
 //                }
@@ -165,7 +159,7 @@ class SiteController extends Controller {
 //                $subSubFamilyModel->name = $family3;
 //                $subSubFamilyModel->subfamily = $subFamilyId;
 //                if ($subSubFamilyModel->save()) {
-//                    
+//
 //                } else {
 //                    VarDumper::dump($subSubFamilyModel->errors, 3, true);
 //                }
@@ -181,7 +175,7 @@ class SiteController extends Controller {
 //            $item->code = $itemCode. "";
 ////            $item->brand_id
 //            if ($item->save()) {
-//                
+//
 //            } else {
 //                VarDumper::dump($item->errors, 3, true);
 //            }
@@ -189,6 +183,20 @@ class SiteController extends Controller {
 //        return "success";
 //        VarDumper::dump($data, 3, true);
 //        die();
+
+        if (Users::isBranchRole()) {
+            return $this->render('index');
+        }
+        if (Users::isServiceRole()) {
+            return $this->render('index-service');
+        }
+
+        if (Users::isSupervisorRole()) {
+            return $this->render('index');
+        }
+        if (Users::isAdminRole()) {
+            return $this->render('index');
+        }
 
         return $this->render('index');
     }

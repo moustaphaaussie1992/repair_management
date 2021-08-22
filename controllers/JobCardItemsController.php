@@ -64,8 +64,8 @@ class JobCardItemsController extends Controller {
     public function actionCreate($job_card_id) {
         $model = new JobCardItems();
 
-        $model->status = 1;
-        $model->current_location = 1;
+        $model->status = \app\models\JobCard::STATUS_UNDER_REPAIR;
+        $model->current_location = \app\models\JobCard::LOCATION_BRANCH;
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
@@ -93,8 +93,13 @@ class JobCardItemsController extends Controller {
     public function actionUpdate($id) {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost && $model->load($this->request->post())) {
+
+
+            if ($model->save()) {
+
+                return $this->redirect(['job-card/view', 'id' => $model->job_card_id]);
+            }
         }
 
         return $this->render('update', [

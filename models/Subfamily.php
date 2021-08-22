@@ -14,21 +14,19 @@ use Yii;
  * @property Family $family0
  * @property Subsubfamily[] $subsubfamilies
  */
-class Subfamily extends \yii\db\ActiveRecord
-{
+class Subfamily extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'subfamily';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['name', 'family'], 'required'],
             [['family'], 'integer'],
@@ -40,8 +38,7 @@ class Subfamily extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'name' => 'Name',
@@ -54,8 +51,7 @@ class Subfamily extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getFamily0()
-    {
+    public function getFamily0() {
         return $this->hasOne(Family::className(), ['id' => 'family']);
     }
 
@@ -64,8 +60,18 @@ class Subfamily extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getSubsubfamilies()
-    {
+    public function getSubsubfamilies() {
         return $this->hasMany(Subsubfamily::className(), ['subfamily' => 'id']);
     }
+
+    public function getSubfamiliesbyfamily($family) {
+
+
+        $subfamily = \app\models\Subfamily::find()
+                ->select('*')
+                ->where(['family' => $family])
+                ->all();
+        return $subfamily;
+    }
+
 }

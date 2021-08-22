@@ -2,9 +2,10 @@
 
 namespace app\models;
 
+use app\models\JobCardItems;
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\JobCardItems;
 
 /**
  * JobCardItemsSearch represents the model behind the search form of `app\models\JobCardItems`.
@@ -71,7 +72,93 @@ class JobCardItemsSearch extends JobCardItems {
     }
 
     public function mysearch($params, $id) {
+
+        $user = Users::findOne(["id" => Yii::$app->user->id]);
+
+
+
+
+
         $query = JobCardItems::find()->where(['job_card_id' => $id]);
+
+
+        if (Users::isBranchRole()) {
+
+
+
+            $query->andWhere(['current_location' => JobCard::LOCATION_BRANCH]);
+        }
+        if (Users::isServiceRole()) {
+
+
+
+            $query->andWhere(['current_location' => JobCard::LOCATION_SERVICE]);
+        }
+
+
+
+
+
+
+        // add conditions that should always apply here
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        // grid filtering conditions
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'job_card_id' => $this->job_card_id,
+            'item_id' => $this->item_id,
+            'cost' => $this->cost,
+            'warranty' => $this->warranty,
+            'warranty_type' => $this->warranty_type,
+            'status' => $this->status,
+            'current_location' => $this->current_location,
+        ]);
+
+        $query->andFilterWhere(['like', 'description', $this->description]);
+
+        return $dataProvider;
+    }
+
+    public function mysearch2($params, $id) {
+
+        $user = Users::findOne(["id" => Yii::$app->user->id]);
+
+
+
+
+
+        $query = JobCardItems::find()->where(['job_card_id' => $id]);
+
+
+        if (Users::isBranchRole()) {
+
+
+
+            $query->andWhere(['current_location' => JobCard::LOCATION_SENT_TO_BRANCH]);
+        }
+        if (Users::isServiceRole()) {
+
+
+
+            $query->andWhere(['current_location' => JobCard::LOCATION_SENT_TO_SERVICE]);
+        }
+
+
+
+
+
 
         // add conditions that should always apply here
 

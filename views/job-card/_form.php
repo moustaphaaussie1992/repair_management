@@ -47,20 +47,20 @@ $this->title = 'New Job Card';
                     ],
                 ])->label("Customer");
                 ?>
-                <?=
-                $form->field($model, 'branch_id')->widget(Select2::classname(), [
-                    'data' => ArrayHelper::map(Branch::find()->all(), 'id', function($model) {
-                                return $model['name'];
-                            }),
-                    'options' => [
-//            'id' => 'test',
-                        'placeholder' => Yii::t("app", "Select "),
-//            'dir' => 'rtl',
-                    ],
-                    'pluginOptions' => [
-                        'allowClear' => true
-                    ],
-                ])->label("Branch");
+                <?php
+//                $form->field($model, 'branch_id')->widget(Select2::classname(), [
+//                    'data' => ArrayHelper::map(Branch::find()->all(), 'id', function($model) {
+//                                return $model['name'];
+//                            }),
+//                    'options' => [
+////            'id' => 'test',
+//                        'placeholder' => Yii::t("app", "Select "),
+////            'dir' => 'rtl',
+//                    ],
+//                    'pluginOptions' => [
+//                        'allowClear' => true
+//                    ],
+//                ])->label("Branch");
                 ?>
                 <div class="form-group">
 

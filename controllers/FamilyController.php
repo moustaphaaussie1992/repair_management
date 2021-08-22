@@ -11,23 +11,22 @@ use yii\filters\VerbFilter;
 /**
  * FamilyController implements the CRUD actions for Family model.
  */
-class FamilyController extends Controller
-{
+class FamilyController extends Controller {
+
     /**
      * @inheritDoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+                parent::behaviors(),
+                [
+                    'verbs' => [
+                        'class' => VerbFilter::className(),
+                        'actions' => [
+                            'delete' => ['POST'],
+                        ],
                     ],
-                ],
-            ]
+                ]
         );
     }
 
@@ -35,14 +34,13 @@ class FamilyController extends Controller
      * Lists all Family models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $searchModel = new FamilySearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -52,10 +50,9 @@ class FamilyController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),
         ]);
     }
 
@@ -64,8 +61,7 @@ class FamilyController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new Family();
 
         if ($this->request->isPost) {
@@ -77,7 +73,7 @@ class FamilyController extends Controller
         }
 
         return $this->render('create', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -88,8 +84,7 @@ class FamilyController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -97,7 +92,7 @@ class FamilyController extends Controller
         }
 
         return $this->render('update', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -108,8 +103,7 @@ class FamilyController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -122,12 +116,40 @@ class FamilyController extends Controller
      * @return Family the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = Family::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public function actionFamilySelect() {
+
+
+
+
+        $family = (isset(Yii::$app->request->queryParams["ItemSarch"]["family"])) ? Yii::$app->request->queryParams["AppointmentsSearch"]["family"] : null;
+
+        $subfamily = (isset(Yii::$app->request->queryParams["ItemSarch"]["subfamily"])) ? Yii::$app->request->queryParams["AppointmentsSearch"]["subfamily"] : null;
+        $subsubfamily = (isset(Yii::$app->request->queryParams["ItemSarch"]["subsubfamily"])) ? Yii::$app->request->queryParams["AppointmentsSearch"]["subsubfamily"] : null;
+
+
+        if ($family) {
+
+            $subfamily = \app\models\Subfamily::getSubfamiliesbyfamily($family);
+
+            if ($family && $family != "" && $subfamily && $subfamily != "") {
+                $subsubfamily = \app\models\Subsubfamily::getSubsubfamiliesbyfamily($subfamily);
+            }
+        }
+
+
+
+        return $this->render('create', [
+                    'subfamily' => $subfamily,
+                    'subsubfamily' => $subsubfamily,
+        ]);
+    }
+
 }

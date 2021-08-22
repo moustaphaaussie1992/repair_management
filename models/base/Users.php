@@ -21,6 +21,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $password_reset_token
  * @property string $email
  * @property integer $status
+ * @property integer $branch
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $aliasModel
@@ -66,9 +67,9 @@ abstract class Users extends User {
         return [
             'id' => 'ID',
             'username' => 'Username',
-            'c_first_name' => 'C First Name',
-            'c_last_name' => 'C Last Name',
-            'c_phone' => 'C Phone',
+            'c_first_name' => 'First Name',
+            'c_last_name' => 'Last Name',
+            'c_phone' => 'Phone',
             'auth_key' => 'Auth Key',
             'password_hash' => 'Password Hash',
             'password_reset_token' => 'Password Reset Token',

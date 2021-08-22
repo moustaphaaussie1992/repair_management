@@ -2,9 +2,10 @@
 
 namespace app\models;
 
+use app\models\JobCard;
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\JobCard;
 
 /**
  * JobCardSearch represents the model behind the search form of `app\models\JobCard`.
@@ -37,9 +38,24 @@ class JobCardSearch extends JobCard {
      * @return ActiveDataProvider
      */
     public function search($params) {
+
+        $user = Users::findOne(["id" => Yii::$app->user->id]);
         $query = JobCard::find()
                 ->joinWith('branch')
                 ->joinWith('customer');
+
+        if (Users::isBranchRole()) {
+
+            $branchid = $user->branch;
+
+            $query->andWhere(['branch_id' => $branchid]);
+            $query->andWhere(['current_location' => JobCard::LOCATION_SENT_TO_BRANCH]);
+        }
+
+        if (Users::isServiceRole()) {
+
+            $query->andWhere(['current_location' => JobCard::LOCATION_SENT_TO_SERVICE]);
+        }
 
 
         // add conditions that should always apply here
@@ -69,11 +85,23 @@ class JobCardSearch extends JobCard {
     }
 
     public function readysearch($params) {
+        $user = Users::findOne(["id" => Yii::$app->user->id]);
         $query = JobCard::find()
                 ->joinWith('branch')
                 ->joinWith('customer')
                 ->where(['done' => 1]);
+        if (Users::isBranchRole()) {
 
+            $branchid = $user->branch;
+
+            $query->andWhere(['branch_id' => $branchid]);
+            $query->andWhere(['current_location' => JobCard::LOCATION_BRANCH]);
+        }
+
+        if (Users::isServiceRole()) {
+
+            $query->andWhere(['current_location' => JobCard::LOCATION_SERVICE]);
+        }
 
         // add conditions that should always apply here
 
@@ -102,10 +130,32 @@ class JobCardSearch extends JobCard {
     }
 
     public function needfixsearch($params) {
+
+
+
+        $user = Users::findOne(["id" => Yii::$app->user->id]);
+
+
         $query = JobCard::find()
                 ->joinWith('branch')
                 ->joinWith('customer')
                 ->where(['done' => 0]);
+
+        if (Users::isBranchRole()) {
+
+            $branchid = $user->branch;
+
+            $query->andWhere(['branch_id' => $branchid]);
+            $query->andWhere(['current_location' => JobCard::LOCATION_BRANCH]);
+        }
+
+        if (Users::isServiceRole()) {
+
+//            $query->andWhere(['current_location' => JobCard::LOCATION_SERVICE]);
+            $query->joinWith('jobCardItems')
+                    ->andWhere((['job_card_items.current_location' => JobCard::LOCATION_SERVICE]));
+        }
+
 
 
         // add conditions that should always apply here

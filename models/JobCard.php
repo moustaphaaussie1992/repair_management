@@ -12,6 +12,7 @@ use yii\db\ActiveRecord;
  * @property int $customer_id
  * @property int $branch_id
  * @property int $done
+ * @property int $current_location
  *
  * @property Branch $branch
  * @property Customer $customer
@@ -19,6 +20,14 @@ use yii\db\ActiveRecord;
  * @property JobCardItems[] $jobCardItems
  */
 class JobCard extends ActiveRecord {
+
+    const LOCATION_BRANCH = '1';
+    const LOCATION_SENT_TO_SERVICE = '2';
+    const LOCATION_SERVICE = '3';
+    const LOCATION_SENT_TO_BRANCH = '4';
+    const STATUS_UNDER_REPAIR = '1';
+    const STATUS_FIXED = '2';
+    const STATUS_UNFIXABLE = '3';
 
     /**
      * {@inheritdoc}
@@ -32,8 +41,8 @@ class JobCard extends ActiveRecord {
      */
     public function rules() {
         return [
-            [['customer_id', 'branch_id'], 'required'],
-            [['customer_id', 'branch_id', 'done'], 'integer'],
+            [['customer_id', 'branch_id', 'current_location'], 'required'],
+            [['customer_id', 'branch_id', 'done', 'current_location'], 'integer'],
             [['branch_id'], 'exist', 'skipOnError' => true, 'targetClass' => Branch::className(), 'targetAttribute' => ['branch_id' => 'id']],
             [['customer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::className(), 'targetAttribute' => ['customer_id' => 'id']],
         ];
@@ -48,6 +57,7 @@ class JobCard extends ActiveRecord {
             'customer_id' => 'Customer ID',
             'branch_id' => 'Branch ID',
             'done' => 'Done',
+            'current_location' => 'Current Location',
         ];
     }
 

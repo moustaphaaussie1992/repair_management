@@ -2,7 +2,10 @@
 
 use app\models\Item;
 use app\models\JobCardItems;
+use app\models\Status;
+use app\models\Users;
 use app\models\WarrantyType;
+use kartik\checkbox\CheckboxX;
 use kartik\widgets\Select2;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -42,7 +45,7 @@ use yii\widgets\ActiveForm;
 
 
     <?=
-    $form->field($model, 'warranty')->widget(kartik\checkbox\CheckboxX::className(), [
+    $form->field($model, 'warranty')->widget(CheckboxX::className(), [
 //        'name' => 's_1',
 //        'options' => ['id' => 's_1'],
         'pluginOptions' => ['threeState' => false]
@@ -73,7 +76,30 @@ use yii\widgets\ActiveForm;
     <?php // $form->field($model, 'current_location')->textInput() ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-    <?= $form->field($model, 'cost')->textInput() ?>
+
+
+    <?php
+    $user = Users::findOne(["id" => Yii::$app->user->id]);
+
+    if (Users::isServiceRole()) {
+        echo $form->field($model, 'cost')->textInput();
+        echo $form->field($model, 'status')->widget(Select2::classname(), [
+            'data' => ArrayHelper::map(Status::find()->all(), 'id', function($model) {
+                        return $model['name'];
+                    }),
+            'options' => [
+//            'id' => 'test',
+                'placeholder' => Yii::t("app", "Select "),
+//            'dir' => 'rtl',
+            ],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ])->label("Status");
+    }
+    ?>
+
+
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
