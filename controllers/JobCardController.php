@@ -167,7 +167,14 @@ class JobCardController extends Controller {
         $model = new JobCardDetailsModel();
 
         if ($model->load($this->request->post())) {
-//            return $this->redirect(['view', 'id' => $model->id]);
+            $searchModel = new JobCardItemsSearch();
+            $dataProvider = $searchModel->mysearch($this->request->queryParams, $model->job_card_id);
+
+            return $this->render('job-card-details', [
+                        'model' => $model,
+                        'searchModel' => $searchModel,
+                        'dataProvider' => $dataProvider,
+            ]);
         }
 
         return $this->render('job-card-details', [
