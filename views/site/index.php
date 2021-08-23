@@ -97,7 +97,7 @@ $this->title = 'Get4Less Repair Management System';
         </div>
     </div>
 </div>
-<button id="sendMessage">Send message</button>
+<!--<button id="sendMessage">Send message</button>-->
 
 <style>
 
@@ -175,36 +175,36 @@ JSRegister::begin([
 
 <script>
 
-    $("#sendMessage").on('click', function () {
-
-        var message = "hello musta";
-        var result = confirm("هل أنت متأكد؟");
-        if (result) {
-            $.ajax({
-                url: '<?php echo Url::toRoute("/site/send-message") ?>',
-                type: "POST",
-                data: {
-                    'message': message,
-                },
-                success: function (data) {
-
-                    if (data["success"] == true) {
-                        console.log(data);
-//                        alert("meshe l7al");
-                    } else {
-                        console.log("error");
-//                        alert('error');
-                    }
-                },
-                error: function (errormessage) {
-                    console.log("not working");
-                }
-            });
-        }
-
-//        $message = Yii::$app->twilio->sms('+96181756788', 'Hello World! sssss');
-
-    });
+//    $("#sendMessage").on('click', function () {
+//
+//        var message = "hello musta";
+//        var result = confirm("هل أنت متأكد؟");
+//        if (result) {
+//            $.ajax({
+//                url: '<?php echo Url::toRoute("/site/send-message") ?>',
+//                type: "POST",
+//                data: {
+//                    'message': message,
+//                },
+//                success: function (data) {
+//
+//                    if (data["success"] == true) {
+//                        console.log(data);
+////                        alert("meshe l7al");
+//                    } else {
+//                        console.log("error");
+////                        alert('error');
+//                    }
+//                },
+//                error: function (errormessage) {
+//                    console.log("not working");
+//                }
+//            });
+//        }
+//
+////        $message = Yii::$app->twilio->sms('+96181756788', 'Hello World! sssss');
+//
+//    });
 
 </script>
 
