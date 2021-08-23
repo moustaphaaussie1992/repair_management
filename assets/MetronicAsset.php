@@ -42,7 +42,11 @@ class MetronicAsset extends AssetBundle {
         "assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js",
         "assets/global/plugins/bootstrap-toastr/toastr.min.js",
 //        "assets/global/scripts/app.min.js",
-        "assets/pages/scripts/ui-toastr.min.js"
+        "assets/pages/scripts/ui-toastr.min.js",
+        "https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js",
+        "https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"
+        ,
+        "myjs/initiatefirebase.js"
     ];
 //    public $jsOptions = [
 //        'position' => \yii\web\View::POS_BEGIN

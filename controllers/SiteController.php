@@ -16,11 +16,31 @@ use const YII_ENV_TEST;
 
 class SiteController extends Controller {
 
+//    Public $enableCsrfValidation = false;
+
+    public static function allowedDomains() {
+        return [
+            '*', // star allows all domains
+//            'https://sendgrid.api-docs.io',
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
     public function behaviors() {
         return [
+//             For cross-domain AJAX request
+//            'corsFilter' => [
+//                'class' => \yii\filters\Cors::className(),
+//                'cors' => [
+//                    // restrict access to domains:
+//                    'Origin' => static::allowedDomains(),
+//                    'Access-Control-Request-Method' => ['POST'],
+//                    'Access-Control-Allow-Credentials' => true,
+//                    'Access-Control-Max-Age' => 3600, // Cache (seconds)
+//                ],
+//            ],
             'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['logout'],
@@ -76,10 +96,7 @@ class SiteController extends Controller {
 //        ]);
 //        VarDumper::dump($dataItems, 3, true);
 //        die();
-
 //        $dataItems = Item::find()->asArray()->all();
-
-
 //        for ($j = 0; $j < sizeof($dataItems); $j++) {
 //            $itemCode = $dataItems[$j]["code"];
 //            $id = $dataItems[$j]["id"];
@@ -104,7 +121,6 @@ class SiteController extends Controller {
 //                }
 //            }
 //        }
-
 //        for ($i = 0; $i < sizeof($data); $i++) {
 //            $brandName = $data[$i]["Brand Name"];
 //            $brandItemCode = $data[$i]["Item Code"];
@@ -251,4 +267,19 @@ class SiteController extends Controller {
         return $this->render('about');
     }
 
+    public function actionSendMessage() {
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $request = Yii::$app->request;
+        $message = $request->post('message');
+        $message = Yii::$app->twilio->sms('+96181756788', "arsenal feshleen");
+//        $message = Yii::$app->twilio->sms('+96171317273', "real feshleen");
+//        $message = Yii::$app->twilio->sms('+96178804114', "ane badde 3enab");
+        return "success";
+    }
+
+//    public static function sendMessage($message){
+//        $message = Yii::$app->twilio->sms('+96181756788', $message);
+//        return "success";
+//    }
 }

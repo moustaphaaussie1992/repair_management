@@ -26,11 +26,11 @@ if (LanguageSwitcher::isRtl()) {
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" >
 
-<?= $this->render('_head'); ?>
+    <?= $this->render('_head'); ?>
 
 
     <body   style='background-image: url("<?= Url::base() . '/bg13.jpg' ?>"); background-size: cover;'>
-<?php $this->beginBody() ?>
+        <?php $this->beginBody() ?>
         <div class="wrap">
 
 
@@ -137,18 +137,18 @@ if (LanguageSwitcher::isRtl()) {
 //                ])
                 ?>
                 <?= Alert::widget() ?>
-<?= $content ?>
+                <?= $content ?>
             </div>
         </div>
         <!--        <footer class="footer yii-debug-toolbar  " style=" position:fixed;bottom:4px ;text-align:left;width:96px;transition:width .3s ease;" >
                     <div class="container">
-                        <p class="pull-left"><?php // Yii::t('app', 'Temp App') . ' &copy; ' . date('Y')                 ?></p>
+                        <p class="pull-left"><?php // Yii::t('app', 'Temp App') . ' &copy; ' . date('Y')                  ?></p>
                     </div>
                 </footer>-->
 
 
 
-<?php $this->endBody() ?>
+        <?php $this->endBody() ?>
     </body>
 
 </html>

@@ -3,9 +3,11 @@
 namespace app\controllers;
 
 use app\models\JobCard;
+use app\models\JobCardDetailsModel;
 use app\models\JobCardItemsSearch;
 use app\models\JobCardSearch;
 use Yii;
+use yii\db\Exception;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -20,14 +22,13 @@ class JobCardController extends Controller {
      */
     public function behaviors() {
         return array_merge(
-                parent::behaviors(),
-                [
-                    'verbs' => [
-                        'class' => VerbFilter::className(),
-                        'actions' => [
-                            'delete' => ['POST'],
-                        ],
-                    ],
+                parent::behaviors(), [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
                 ]
         );
     }
@@ -139,7 +140,7 @@ class JobCardController extends Controller {
 
         try {
             $model->delete();
-        } catch (\yii\db\Exception $ex) {
+        } catch (Exception $ex) {
             Yii::$app->session->setFlash('error', "Job Card has items cannot delete");
         }
 
@@ -159,6 +160,19 @@ class JobCardController extends Controller {
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionJobCardDetail() {
+
+        $model = new JobCardDetailsModel();
+
+        if ($model->load($this->request->post())) {
+//            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('job-card-details', [
+                    'model' => $model
+        ]);
     }
 
 }
