@@ -41,7 +41,7 @@ class JobCard extends ActiveRecord {
      */
     public function rules() {
         return [
-            [['customer_id', 'branch_id', 'current_location'], 'required'],
+            [['customer_id', 'branch_id'], 'required'],
             [['customer_id', 'branch_id', 'done', 'current_location'], 'integer'],
             [['branch_id'], 'exist', 'skipOnError' => true, 'targetClass' => Branch::className(), 'targetAttribute' => ['branch_id' => 'id']],
             [['customer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::className(), 'targetAttribute' => ['customer_id' => 'id']],

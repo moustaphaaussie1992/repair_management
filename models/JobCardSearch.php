@@ -44,12 +44,16 @@ class JobCardSearch extends JobCard {
                 ->joinWith('branch')
                 ->joinWith('customer');
 
+
         if (Users::isBranchRole()) {
 
             $branchid = $user->branch;
 
             $query->andWhere(['branch_id' => $branchid]);
             $query->andWhere(['current_location' => JobCard::LOCATION_SENT_TO_BRANCH]);
+
+//            $query->joinWith('jobCardItems')
+//                    ->andWhere((['job_card_items.current_location' => JobCard::LOCATION_SENT_TO_BRANCH]));
         }
 
         if (Users::isServiceRole()) {
