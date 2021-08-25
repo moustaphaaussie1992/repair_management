@@ -16,7 +16,7 @@ $config = [
     ],
     'components' => [
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+// !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'Ne6NFOtgqgR2leVZLoBWIFhQ4zpY2a7V',
         ],
         'cache' => [
@@ -32,8 +32,8 @@ $config = [
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
+// 'useFileTransport' to false and configure a transport
+// for the mailer to send real emails.
             'useFileTransport' => true,
         ],
         'log' => [
@@ -73,14 +73,38 @@ $config = [
             'class' => 'yii\rbac\DbManager',
         ],
         'db' => $db,
-    /*
-      'urlManager' => [
-      'enablePrettyUrl' => true,
-      'showScriptName' => false,
-      'rules' => [
-      ],
-      ],
-     */
+        /*
+          'urlManager' => [
+          'enablePrettyUrl' => true,
+          'showScriptName' => false,
+          'rules' => [
+          ],
+          ],
+         */
+//        'sms' => [
+//            'class' => 'wadeshuler\sms\twilio\Sms',
+//            // Advanced app use '@common/sms', basic use '@app/sms'
+////            'viewPath' => '@common/sms', // Optional: defaults to '@app/sms'
+//// send all sms to a file by default. You have to set
+//// 'useFileTransport' to false and configure the messageConfig['from'],
+//// 'sid', and 'token' to send real messages
+//            'useFileTransport' => true,
+//            'messageConfig' => [
+//                'from' => '+16503185356', // Your Twilio number (full or shortcode)
+//            ],
+//            // Find your Account Sid and Auth Token at https://twilio.com/console
+//            'sid' => 'AC4821e6dd86449442269a9552b93387d0',
+//            'token' => '6c5a0d2f74306fe55a4bb553d96b7df4',
+//        // Tell Twilio where to POST information about your message.
+//// @see https://www.twilio.com/docs/sms/send-messages#monitor-the-status-of-your-message
+////'statusCallback' => 'https://example.com/path/to/callback',      // optional
+//        ],
+        'twilio' => [
+            'class' => '\dosamigos\twilio\TwilioComponent',
+            'sid' => 'AC4821e6dd86449442269a9552b93387d0',
+            'token' => '6c5a0d2f74306fe55a4bb553d96b7df4',
+            'phoneNumber' => '+16503185356'
+        ]
     ],
     'modules' => [
         'admin' => [
