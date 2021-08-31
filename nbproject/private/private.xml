@@ -3,20 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/repair_management/views/layouts/_head.php</file>
-            <file>file:/C:/xampp/htdocs/repair_management/models/Subsubfamily.php</file>
-            <file>file:/C:/xampp/htdocs/repair_management/models/Family.php</file>
-            <file>file:/C:/xampp/htdocs/repair_management/models/Brand.php</file>
+            <file>file:/C:/xampp/htdocs/repair_management/config/web.php</file>
             <file>file:/C:/xampp/htdocs/repair_management/controllers/SiteController.php</file>
-            <file>file:/C:/xampp/htdocs/repair_management/models/Item.php</file>
-            <file>file:/C:/xampp/htdocs/repair_management/views/layouts/main.php</file>
-            <file>file:/C:/xampp/htdocs/repair_management/models/Users.php</file>
-            <file>file:/C:/xampp/htdocs/repair_management/assets/AppAsset.php</file>
-            <file>file:/C:/xampp/htdocs/repair_management/models/Subfamily.php</file>
-            <file>file:/C:/xampp/htdocs/repair_management/composer.json</file>
-            <file>file:/C:/xampp/htdocs/repair_management/models/SubfamilySearch.php</file>
-            <file>file:/C:/xampp/htdocs/repair_management/.git/config</file>
-            <file>file:/C:/xampp/htdocs/repair_management/views/status/_form.php</file>
         </group>
     </open-files>
 </project-private>

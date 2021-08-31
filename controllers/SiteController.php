@@ -83,6 +83,7 @@ class SiteController extends Controller {
      */
     public function actionIndex() {
 
+
 //        $data = Excel::import($fileName); // $config is an optional
 //        $data = Excel::import('Item List (2).xlsx', [
 //                    'setFirstRecordAsKeys' => true, // if you want to set the keys of record column with first record, if it not set, the header with use the alphabet column on excel. 
@@ -267,15 +268,37 @@ class SiteController extends Controller {
         return $this->render('about');
     }
 
-    public function actionSendMessage() {
-
+    public function actionSendSmsMessage() {
         Yii::$app->response->format = Response::FORMAT_JSON;
         $request = Yii::$app->request;
         $message = $request->post('message');
         $message = Yii::$app->twilio->sms('+96181756788', "arsenal feshleen");
-//        $message = Yii::$app->twilio->sms('+96171317273', "real feshleen");
-//        $message = Yii::$app->twilio->sms('+96178804114', "ane badde 3enab");
         return "success";
+    }
+
+    public function actionSendEmailMessage() {
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $request = Yii::$app->request;
+        $email = $request->post('email');
+        $subject = $request->post('subject');
+        $email = $request->post('email');
+        $message = $request->post('message');
+
+        Yii::$app->mailer->compose()
+                ->setFrom('service.get4lessghana@gmail.com')
+                ->setTo($email)
+                ->setSubject($subject)
+                ->setTextBody('hayda l body lal email')
+                ->send();
+//        
+//        Yii::$app->mailer->compose()
+//                ->setFrom('service.get4lessghana@gmail.com')
+//                ->setTo('moustaphaaussie@gmail.com')
+//                ->setSubject('mawdo3 l email')
+//                ->setTextBody('hayda l body lal email')
+//                ->setHtmlBody('<b>Real Madrid l oussa kella ma3 chambers 3al defe3</b>')
+//                ->send();
     }
 
 //    public static function sendMessage($message){
