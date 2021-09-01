@@ -282,6 +282,8 @@ class JobCardController extends Controller {
 //            }
             return $this->redirect(['job-card-items/recieve']);
         }
+    }
+
     public function actionJobCardDetail() {
 
         $model = new JobCardDetailsModel();
