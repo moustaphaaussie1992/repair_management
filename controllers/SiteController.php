@@ -8,6 +8,7 @@ use app\models\Users;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\Response;
 use const YII_ENV_TEST;
@@ -204,6 +205,9 @@ class SiteController extends Controller {
 //        VarDumper::dump($data, 3, true);
 //        die();
 
+
+        if (Yii::$app->user->isGuest)
+            return Yii::$app->getResponse()->redirect(['site/login']);
         if (Users::isBranchRole()) {
             return $this->render('index');
         }
@@ -249,8 +253,9 @@ class SiteController extends Controller {
      */
     public function actionLogout() {
         Yii::$app->user->logout();
-
-        return $this->goHome();
+        return $this->redirect(['login']
+        );
+//        return $this->goHome();
     }
 
     /**

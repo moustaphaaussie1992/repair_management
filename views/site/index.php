@@ -77,7 +77,7 @@ $this->title = 'Get4Less Repair Management System';
 
             <div class="col-md-6">
                 <?=
-                Html::a('<i class="	glyphicon glyphicon-send"></i><span class="count-name">Transfer To Service Center</span>', ['/job-card/transfer'], [
+                Html::a('<i class="	glyphicon glyphicon-send"></i><span class="count-name">Transfer To Service Center</span>', ['/job-card-items/transfer'], [
                     'class' => 'card-counter primary col-md-12',
                     'style' => ['border' => 'none']
                 ])
@@ -87,7 +87,7 @@ $this->title = 'Get4Less Repair Management System';
 
             <div class="col-md-6">
                 <?=
-                Html::a('<i class="	glyphicon glyphicon-ok"></i><span class="count-name">Ready Items</span>', ['/job-card/indexready'], [
+                Html::a('<i class="	glyphicon glyphicon-ok"></i><span class="count-name">Ready Items</span>', ['/job-card-items/indexready'], [
                     'class' => 'card-counter danger col-md-12',
                     'style' => ['border' => 'none']
                 ])
@@ -97,7 +97,18 @@ $this->title = 'Get4Less Repair Management System';
             <div class="col-md-6">
                 <?=
                 Html::a('<i class="	glyphicon glyphicon-ok"></i><span class="count-name">Recieve From Service</span>',
-                        ['/job-card/recieve'],
+                        ['/job-card-items/recieve'],
+                        [
+                            'class' => 'card-counter success col-md-12',
+                            'style' => ['border' => 'none']
+                ])
+                ?>
+            </div>
+
+            <div class="col-md-6">
+                <?=
+                Html::a('<i class="	glyphicon glyphicon-send"></i><span class="count-name">send email</span>',
+                        ['/customer/sendemail'],
                         [
                             'class' => 'card-counter success col-md-12',
                             'style' => ['border' => 'none']

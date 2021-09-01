@@ -133,73 +133,73 @@ YiiAsset::register($this);
                                         ]
                             ]);
                         },
-                        'send' => function ($url, $model) {
-                            $urlsend = null;
-
-                            $user = Users::findOne(["id" => Yii::$app->user->id]);
-                            if (Users::isBranchRole()) {
-
-                                $urlsend = "/job-card/send-to-center";
-                                return Html::a('<span class="glyphicon glyphicon-send "></span>', [$urlsend, 'id' => $model->id], [
-                                            'class' => 'btn btn-primary btn-xs my-ajax',
-                                            'style' => ' background-color: #32CD30 ',
-                                            'title' => 'Send to ServiceCenter',
-                                            'data' => [
-                                                'confirm' => Yii::t('app', 'Are you sure you want to Send this item?'),
-                                                'title' => Yii::t('app', 'Confirmation'),
-                                                'ok' => Yii::t('app', 'OK'),
-                                                'cancel' => Yii::t('app', 'Cancel'),
-                                            ]
-                                ]);
-                            } elseif (Users::isServiceRole()) {
-                                $urlsend = "/job-card/send-to-branch";
-                                return Html::a('<span class="glyphicon glyphicon-send "></span>', [$urlsend, 'id' => $model->id], [
-                                            'class' => 'btn btn-primary btn-xs my-ajax',
-                                            'style' => ' background-color: #32CD30 ',
-                                            'title' => 'Send to Branch',
-                                            'data' => [
-                                                'confirm' => Yii::t('app', 'Are you sure you want to Send this item?'),
-                                                'title' => Yii::t('app', 'Confirmation'),
-                                                'ok' => Yii::t('app', 'OK'),
-                                                'cancel' => Yii::t('app', 'Cancel'),
-                                            ]
-                                ]);
-                            }
-                        },
-//                                actionRecieveFromBranch
-                        'recieve' => function ($url, $model) {
-                            $urlsend = null;
-
-                            $user = Users::findOne(["id" => Yii::$app->user->id]);
-                            if (Users::isBranchRole()) {
-
-                                $urlsend = "/job-card/recieve-from-service";
-                                return Html::a('<span class=" glyphicon glyphicon-inbox "></span>', [$urlsend, 'id' => $model->id], [
-                                            'class' => 'btn btn-primary btn-xs my-ajax',
-                                            'style' => ' background-color: #32CD30 ',
-                                            'title' => 'Recieve from ServiceCenter',
-                                            'data' => [
-                                                'confirm' => Yii::t('app', 'Are you sure you want to Recieve this item?'),
-                                                'title' => Yii::t('app', 'Confirmation'),
-                                                'ok' => Yii::t('app', 'OK'),
-                                                'cancel' => Yii::t('app', 'Cancel'),
-                                            ]
-                                ]);
-                            } elseif (Users::isServiceRole()) {
-                                $urlsend = "/job-card/recieve-from-branch";
-                                return Html::a('<span class="glyphicon glyphicon-inbox"></span>', [$urlsend, 'id' => $model->id], [
-                                            'class' => 'btn btn-primary btn-xs my-ajax',
-                                            'style' => ' background-color: #337ab7 ',
-                                            'title' => 'Recieve from Branch',
-                                            'data' => [
-                                                'confirm' => Yii::t('app', 'Are you sure you want to Recieve this item?'),
-                                                'title' => Yii::t('app', 'Confirmation'),
-                                                'ok' => Yii::t('app', 'OK'),
-                                                'cancel' => Yii::t('app', 'Cancel'),
-                                            ]
-                                ]);
-                            }
-                        },
+//                        'send' => function ($url, $model) {
+//                            $urlsend = null;
+//
+//                            $user = Users::findOne(["id" => Yii::$app->user->id]);
+//                            if (Users::isBranchRole()) {
+//
+//                                $urlsend = "/job-card/send-to-center";
+//                                return Html::a('<span class="glyphicon glyphicon-send "></span>', [$urlsend, 'id' => $model->id], [
+//                                            'class' => 'btn btn-primary btn-xs my-ajax',
+//                                            'style' => ' background-color: #32CD30 ',
+//                                            'title' => 'Send to ServiceCenter',
+//                                            'data' => [
+//                                                'confirm' => Yii::t('app', 'Are you sure you want to Send this item?'),
+//                                                'title' => Yii::t('app', 'Confirmation'),
+//                                                'ok' => Yii::t('app', 'OK'),
+//                                                'cancel' => Yii::t('app', 'Cancel'),
+//                                            ]
+//                                ]);
+//                            } elseif (Users::isServiceRole()) {
+//                                $urlsend = "/job-card/send-to-branch";
+//                                return Html::a('<span class="glyphicon glyphicon-send "></span>', [$urlsend, 'id' => $model->id], [
+//                                            'class' => 'btn btn-primary btn-xs my-ajax',
+//                                            'style' => ' background-color: #32CD30 ',
+//                                            'title' => 'Send to Branch',
+//                                            'data' => [
+//                                                'confirm' => Yii::t('app', 'Are you sure you want to Send this item?'),
+//                                                'title' => Yii::t('app', 'Confirmation'),
+//                                                'ok' => Yii::t('app', 'OK'),
+//                                                'cancel' => Yii::t('app', 'Cancel'),
+//                                            ]
+//                                ]);
+//                            }
+//                        },
+////                                actionRecieveFromBranch
+//                        'recieve' => function ($url, $model) {
+//                            $urlsend = null;
+//
+//                            $user = Users::findOne(["id" => Yii::$app->user->id]);
+//                            if (Users::isBranchRole()) {
+//
+//                                $urlsend = "/job-card/recieve-from-service";
+//                                return Html::a('<span class=" glyphicon glyphicon-inbox "></span>', [$urlsend, 'id' => $model->id], [
+//                                            'class' => 'btn btn-primary btn-xs my-ajax',
+//                                            'style' => ' background-color: #32CD30 ',
+//                                            'title' => 'Recieve from ServiceCenter',
+//                                            'data' => [
+//                                                'confirm' => Yii::t('app', 'Are you sure you want to Recieve this item?'),
+//                                                'title' => Yii::t('app', 'Confirmation'),
+//                                                'ok' => Yii::t('app', 'OK'),
+//                                                'cancel' => Yii::t('app', 'Cancel'),
+//                                            ]
+//                                ]);
+//                            } elseif (Users::isServiceRole()) {
+//                                $urlsend = "/job-card/recieve-from-branch";
+//                                return Html::a('<span class="glyphicon glyphicon-inbox"></span>', [$urlsend, 'id' => $model->id], [
+//                                            'class' => 'btn btn-primary btn-xs my-ajax',
+//                                            'style' => ' background-color: #337ab7 ',
+//                                            'title' => 'Recieve from Branch',
+//                                            'data' => [
+//                                                'confirm' => Yii::t('app', 'Are you sure you want to Recieve this item?'),
+//                                                'title' => Yii::t('app', 'Confirmation'),
+//                                                'ok' => Yii::t('app', 'OK'),
+//                                                'cancel' => Yii::t('app', 'Cancel'),
+//                                            ]
+//                                ]);
+//                            }
+//                        },
                     ]
                 ],
             ],

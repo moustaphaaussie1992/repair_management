@@ -8,7 +8,6 @@ use app\models\JobCardItemsSearch;
 use app\models\JobCardSearch;
 use app\models\Users;
 use Yii;
-use yii\bootstrap\Alert;
 use yii\db\Exception;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -45,46 +44,6 @@ class JobCardController extends Controller {
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    public function actionIndexready() {
-        $searchModel = new JobCardSearch();
-        $dataProvider = $searchModel->readysearch($this->request->queryParams);
-
-        return $this->render('index', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    public function actionIndexinstock() {
-        $searchModel = new JobCardSearch();
-        $dataProvider = $searchModel->needfixsearch($this->request->queryParams);
-
-        return $this->render('index', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    public function actionTransfer() {
-        $searchModel = new JobCardSearch();
-        $dataProvider = $searchModel->needfixsearch($this->request->queryParams);
-
-        return $this->render('transfer', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    public function actionRecieve() {
-        $searchModel = new JobCardSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
-
-        return $this->render('recieve', [
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
         ]);
@@ -219,20 +178,21 @@ class JobCardController extends Controller {
             $item->update();
             if ($item->save()) {
 
-                $jobcarditem = JobCardItems::find()
-                        ->where(['job_card_id' => $item->job_card_id])
-                        ->andWhere(['current_location' => JobCard::LOCATION_BRANCH])
-                        ->all();
-
-
-                if (!$jobcarditem) {
-                    $jobcard = JobCard::findOne(['id' => $item->job_card_id]);
-                    $jobcard->current_location = JobCard::LOCATION_SENT_TO_SERVICE;
-                    if ($jobcard->save()) {
-                        return $this->redirect(['job-card/index']);
-                    }
-                }
-                return $this->redirect(['job-card/view', 'id' => $item->job_card_id]);
+//                $jobcarditem = JobCardItems::find()
+//                        ->where(['job_card_id' => $item->job_card_id])
+//                        ->andWhere(['current_location' => JobCard::LOCATION_BRANCH])
+//                        ->all();
+//
+//
+//                if (!$jobcarditem) {
+//                    $jobcard = JobCard::findOne(['id' => $item->job_card_id]);
+//                    $jobcard->current_location = JobCard::LOCATION_SENT_TO_SERVICE;
+//                    if ($jobcard->save()) {
+//                        return $this->redirect(['job-card/index']);
+//                    }
+//                }
+//                return $this->redirect(['job-card/view', 'id' => $item->job_card_id]);
+                return $this->redirect(['job-card-items/transfer']);
             }
         }
     }
@@ -250,20 +210,21 @@ class JobCardController extends Controller {
                 $item->current_location = JobCard::LOCATION_SENT_TO_BRANCH;
                 $item->update();
                 $item->save();
-                $jobcarditem = JobCardItems::find()
-                        ->where(['job_card_id' => $item->job_card_id])
-                        ->andWhere(['current_location' => JobCard::LOCATION_SERVICE])
-                        ->all();
-
-
-                if (!$jobcarditem) {
-                    $jobcard = JobCard::findOne(['id' => $item->job_card_id]);
-                    $jobcard->current_location = JobCard::LOCATION_SENT_TO_BRANCH;
-                    if ($jobcard->save()) {
-                        return $this->redirect(['job-card/index']);
-                    }
-                }
-                return $this->redirect(['job-card/view', 'id' => $item->job_card_id]);
+//                $jobcarditem = JobCardItems::find()
+//                        ->where(['job_card_id' => $item->job_card_id])
+//                        ->andWhere(['current_location' => JobCard::LOCATION_SERVICE])
+//                        ->all();
+//
+//
+//                if (!$jobcarditem) {
+//                    $jobcard = JobCard::findOne(['id' => $item->job_card_id]);
+//                    $jobcard->current_location = JobCard::LOCATION_SENT_TO_BRANCH;
+//                    if ($jobcard->save()) {
+//                        return $this->redirect(['job-card/index']);
+//                    }
+//                }
+//                return $this->redirect(['job-card/view', 'id' => $item->job_card_id]);
+                return $this->redirect(['job-card-items/transfer']);
             }
         }
     }
@@ -279,20 +240,22 @@ class JobCardController extends Controller {
             $item->current_location = JobCard::LOCATION_SERVICE;
             $item->update();
             $item->save();
-            $jobcarditem = JobCardItems::find()
-                    ->where(['job_card_id' => $item->job_card_id])
-                    ->andWhere(['current_location' => JobCard::LOCATION_SENT_TO_SERVICE])
-                    ->all();
+//            $jobcarditem = JobCardItems::find()
+//                    ->where(['job_card_id' => $item->job_card_id])
+//                    ->andWhere(['current_location' => JobCard::LOCATION_SENT_TO_SERVICE])
+//                    ->all();
+//
+//
+//            if (!$jobcarditem) {
+//                $jobcard = JobCard::findOne(['id' => $item->job_card_id]);
+//                $jobcard->current_location = JobCard::LOCATION_SERVICE;
+//                if ($jobcard->save()) {
+//                    return $this->redirect(['job-card/index']);
+//                }
+//            }
+//            return $this->redirect(['job-card/view2', 'id' => $item->job_card_id]);
 
-
-            if (!$jobcarditem) {
-                $jobcard = JobCard::findOne(['id' => $item->job_card_id]);
-                $jobcard->current_location = JobCard::LOCATION_SERVICE;
-                if ($jobcard->save()) {
-                    return $this->redirect(['job-card/index']);
-                }
-            }
-            return $this->redirect(['job-card/view2', 'id' => $item->job_card_id]);
+            return $this->redirect(['job-card-items/recieve']);
         }
     }
 
@@ -307,20 +270,18 @@ class JobCardController extends Controller {
             $item->current_location = JobCard::LOCATION_BRANCH;
             $item->update();
             $item->save();
-            $jobcarditem = JobCardItems::find()
-                    ->where(['job_card_id' => $item->job_card_id])
-                    ->andWhere(['current_location' => JobCard::LOCATION_SENT_TO_BRANCH])
-                    ->all();
-
-
-            if (!$jobcarditem) {
-                $jobcard = JobCard::findOne(['id' => $item->job_card_id]);
-                $jobcard->current_location = JobCard::LOCATION_BRANCH;
-                if ($jobcard->save()) {
-                    return $this->redirect(['job-card/index']);
-                }
-            }
-            return $this->redirect(['job-card/view2', 'id' => $item->job_card_id]);
+//            $jobcarditem = JobCardItems::find()
+//                    ->where(['job_card_id' => $item->job_card_id])
+//                    ->andWhere(['current_location' => JobCard::LOCATION_SENT_TO_BRANCH])
+//                    ->all();
+//            if (!$jobcarditem) {
+//                $jobcard = JobCard::findOne(['id' => $item->job_card_id]);
+//                $jobcard->current_location = JobCard::LOCATION_BRANCH;
+//                if ($jobcard->save()) {
+//                    return $this->redirect(['job-card-items/recieve']);
+//                }
+//            }
+            return $this->redirect(['job-card-items/recieve']);
         }
     }
 

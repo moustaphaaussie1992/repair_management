@@ -23,7 +23,7 @@ $this->title = 'Get4Less Repair Management System';
             <div class="col-md-6">
                 <?=
                 Html::a('<i class="	glyphicon glyphicon-cog"></i><span class="count-name">Recieve Items</span>',
-                        ['/job-card/recieve'],
+                        ['/job-card-items/recieve'],
                         [
                             'class' => 'card-counter info col-md-12',
                             'style' => ['border' => 'none']
@@ -36,7 +36,7 @@ $this->title = 'Get4Less Repair Management System';
             <div class="col-md-6">
                 <?=
                 Html::a('<i class="	glyphicon glyphicon-send"></i><span class="count-name">Transfer To Branch</span>',
-                        ['/job-card/transfer'],
+                        ['/job-card-items/transfer'],
                         [
                             'class' => 'card-counter primary col-md-12',
                             'style' => ['border' => 'none']
@@ -45,21 +45,21 @@ $this->title = 'Get4Less Repair Management System';
             </div>
 
 
-            <div class="col-md-6">
-                <?=
-                Html::a('<i class="	glyphicon glyphicon-ok"></i><span class="count-name">Ready Items In Stock</span>',
-                        ['/job-card/indexready'],
-                        [
-                            'class' => 'card-counter danger col-md-12',
-                            'style' => ['border' => 'none']
-                ])
-                ?>
-            </div>
+            <!--<div class="col-md-6">-->
+            <?php
+//                Html::a('<i class="	glyphicon glyphicon-ok"></i><span class="count-name">Ready Items In Stock</span>',
+//                        ['/job-card-items/indexready'],
+//                        [
+//                            'class' => 'card-counter danger col-md-12',
+//                            'style' => ['border' => 'none']
+//                ])
+            ?>
+            <!--</div>-->
 
             <div class="col-md-6">
                 <?=
                 Html::a('<i class="	glyphicon glyphicon-cog"></i><span class="count-name">Items In Stock</span>',
-                        ['/job-card/indexinstock'],
+                        ['/job-card-items/indexinstock'],
                         [
                             'class' => 'card-counter success col-md-12',
                             'style' => ['border' => 'none']

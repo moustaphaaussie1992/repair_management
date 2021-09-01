@@ -4,9 +4,14 @@ namespace app\controllers;
 
 use app\models\Customer;
 use app\models\CustomerSearch;
+use Exception;
+use SendGrid;
+use SendGrid\Mail\Mail;
+use Yii;
+use yii\filters\VerbFilter;
+use yii\httpclient\Exception as Exception2;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * CustomerController implements the CRUD actions for Customer model.
@@ -83,10 +88,10 @@ class CustomerController extends Controller {
         try {
             if ($model->load($_POST) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
-            } elseif (!\Yii::$app->request->isPost) {
+            } elseif (!Yii::$app->request->isPost) {
                 $model->load($_GET);
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
             $model->addError('_exception', $msg);
         }
@@ -138,6 +143,27 @@ class CustomerController extends Controller {
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionSendemail() {
+//        $client = new Client(['verify' => '/my/path/to/mycertfile.pem']);
+        $email = new Mail();
+        $email->setFrom("fayadhadi2014@gmail.com", "Example User");
+        $email->setSubject("Sending with Twilio SendGrid is Fun");
+        $email->addTo("fayadhadi2014@gmail.com", "Example User");
+        $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
+        $email->addContent(
+                "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
+        );
+        $sendgrid = new SendGrid(getenv('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'));
+        try {
+            $response = $sendgrid->send($email);
+            print $response->statusCode() . "\n";
+            print($response->headers());
+            print $response->body() . "\n";
+        } catch (Exception2 $e) {
+            echo 'Caught exception: ' . $e->getMessage() . "\n";
+        }
     }
 
 }

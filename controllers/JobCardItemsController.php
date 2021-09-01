@@ -2,11 +2,14 @@
 
 namespace app\controllers;
 
+use app\models\JobCard;
 use app\models\JobCardItems;
 use app\models\JobCardItemsSearch;
+use app\models\Users;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * JobCardItemsController implements the CRUD actions for JobCardItems model.
@@ -64,8 +67,8 @@ class JobCardItemsController extends Controller {
     public function actionCreate($job_card_id) {
         $model = new JobCardItems();
 
-        $model->status = \app\models\JobCard::STATUS_UNDER_REPAIR;
-        $model->current_location = \app\models\JobCard::LOCATION_BRANCH;
+        $model->status = JobCard::STATUS_UNDER_REPAIR;
+        $model->current_location = JobCard::LOCATION_BRANCH;
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
@@ -98,7 +101,18 @@ class JobCardItemsController extends Controller {
 
             if ($model->save()) {
 
-                return $this->redirect(['job-card/view', 'id' => $model->job_card_id]);
+
+                $user = Users::findOne(["id" => Yii::$app->user->id]);
+
+
+
+
+                if (Users::isServiceRole()) {
+
+                    return $this->redirect(['indexinstock']);
+                }
+
+                return $this->redirect(['view', 'id' => $model->id]);
             }
         }
 
@@ -133,6 +147,46 @@ class JobCardItemsController extends Controller {
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionIndexready() {
+        $searchModel = new JobCardItemsSearch();
+        $dataProvider = $searchModel->readysearch($this->request->queryParams);
+
+        return $this->render('index', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionTransfer() {
+        $searchModel = new JobCardItemsSearch();
+        $dataProvider = $searchModel->transfersearch($this->request->queryParams);
+
+        return $this->render('transfer', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionRecieve() {
+        $searchModel = new JobCardItemsSearch();
+        $dataProvider = $searchModel->recievesearch($this->request->queryParams);
+
+        return $this->render('recieve', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionIndexinstock() {
+        $searchModel = new JobCardItemsSearch();
+        $dataProvider = $searchModel->needfixsearch($this->request->queryParams);
+
+        return $this->render('index', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+        ]);
     }
 
 }

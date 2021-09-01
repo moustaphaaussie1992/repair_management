@@ -43,8 +43,7 @@
         "codemix/yii2-excelexport": "^2.7",
         "moonlandsoft/yii2-phpexcel": "*",
         "kartik-v/yii2-checkbox-x": "dev-master",
-        "wadeshuler/yii2-sms-twilio": "^1.0",
-        "2amigos/yii2-twilio-component": "^1.0",
+      
         "sendgrid/sendgrid": "^7.9"
     },
     "require-dev": {
