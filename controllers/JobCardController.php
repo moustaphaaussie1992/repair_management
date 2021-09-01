@@ -23,14 +23,13 @@ class JobCardController extends Controller {
      */
     public function behaviors() {
         return array_merge(
-                parent::behaviors(),
-                [
-                    'verbs' => [
-                        'class' => VerbFilter::className(),
-                        'actions' => [
-                            'delete' => ['POST'],
-                        ],
-                    ],
+                parent::behaviors(), [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
                 ]
         );
     }
@@ -283,6 +282,24 @@ class JobCardController extends Controller {
 //            }
             return $this->redirect(['job-card-items/recieve']);
         }
+    public function actionJobCardDetail() {
+
+        $model = new JobCardDetailsModel();
+
+        if ($model->load($this->request->post())) {
+            $searchModel = new JobCardItemsSearch();
+            $dataProvider = $searchModel->mysearch($this->request->queryParams, $model->job_card_id);
+
+            return $this->render('job-card-details', [
+                        'model' => $model,
+                        'searchModel' => $searchModel,
+                        'dataProvider' => $dataProvider,
+            ]);
+        }
+
+        return $this->render('job-card-details', [
+                    'model' => $model
+        ]);
     }
 
 }
