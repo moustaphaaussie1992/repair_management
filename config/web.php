@@ -44,7 +44,7 @@ $config = [
                 'encryption' => 'tls',
                 'host' => 'smtp.gmail.com',
                 'port' => '587',
-                'username' => 'mortux313@gmail.com',
+//                'username' => 'mortux313@gmail.com',
                 'username' => 'service.get4lessghana@gmail.com',
                 'password' => 'G4L@gh91',
             ],

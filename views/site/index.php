@@ -181,7 +181,7 @@ JSRegister::begin([
 //        var result = confirm("هل أنت متأكد؟");
 //        if (result) {
 //            $.ajax({
-//                url: '<?php echo Url::toRoute("/site/send-message") ?>',
+//                url: '<?php // echo Url::toRoute("/site/send-message") ?>',
 //                type: "POST",
 //                data: {
 //                    'message': message,
