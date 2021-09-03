@@ -2,13 +2,18 @@
 
 namespace app\controllers;
 
+use app\models\Branch;
 use app\models\ContactForm;
+use app\models\Customer;
+use app\models\JobCard;
+use app\models\JobCardItems;
 use app\models\LoginForm;
 use app\models\Users;
+use Composer\XdebugHandler\Status;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
-use yii\helpers\Url;
+use yii\rbac\Item;
 use yii\web\Controller;
 use yii\web\Response;
 use const YII_ENV_TEST;
@@ -289,7 +294,8 @@ class SiteController extends Controller {
         Yii::$app->response->format = Response::FORMAT_JSON;
         $request = Yii::$app->request;
         $message = $request->post('message');
-        $message = Yii::$app->twilio->sms('+96181756788', "arsenal feshleen");
+        $phone = $request->post('phone');
+        $message = Yii::$app->twilio->sms($phone, $message);
         return "success";
     }
 
@@ -299,16 +305,23 @@ class SiteController extends Controller {
         $request = Yii::$app->request;
         $email = $request->post('email');
         $subject = $request->post('subject');
-        $email = $request->post('email');
         $message = $request->post('message');
+
+        $itemId = $request->post('id');
+        $item = JobCardItems::findOne(['id' => $id]);
+        $email = "fayadhadi2014@gmail.com";
+        $subject = "item ready";
+        $message = "your item " . $itemId['item_id' . " " . $itemId['job_card+id'] . " is ready"];
 
         Yii::$app->mailer->compose()
                 ->setFrom('service.get4lessghana@gmail.com')
                 ->setTo($email)
                 ->setSubject($subject)
-                ->setTextBody('hayda l body lal email')
+                ->setTextBody($message)
                 ->send();
-//        
+
+        return true;
+//
 //        Yii::$app->mailer->compose()
 //                ->setFrom('service.get4lessghana@gmail.com')
 //                ->setTo('moustaphaaussie@gmail.com')
@@ -318,8 +331,32 @@ class SiteController extends Controller {
 //                ->send();
     }
 
-//    public static function sendMessage($message){
-//        $message = Yii::$app->twilio->sms('+96181756788', $message);
-//        return "success";
-//    }
+    public static function sendMessageItemReady($message) {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $request = Yii::$app->request;
+//        $message = $request->post('message');
+//        $phone = $request->post('phone');
+
+        $itemId = $request->post('id');
+        $items = Item::findOne(['id' => $item->item_id]);
+        $itemName = $items['name'];
+        $status = Status::findOne(['id' => $item->status]);
+        $statusName = $status['name'];
+        $jobcard = JobCard::findOne(["id" => $item->job_card_id]);
+        $customer = Customer::findOne(['id' => $jobcard->customer_id]);
+
+        $location = Branch::findOne(["id" => $jobcard->branch_id]);
+        $locationName = $location->name;
+
+
+
+
+        $message = "Hello " . $customer->name . "\r\nYour item : " . $itemName . "\r\nJob Card nb:  " . $item['job_card_id'] . "\r\n Status : " . $statusName . "\r\n You Cant get it from " . $locationName . " Branch";
+        \yii\helpers\VarDumper::dump($message, 3, true);
+        die();
+
+        $message = Yii::$app->twilio->sms($customer->phone, $message);
+        return true;
+    }
+
 }
