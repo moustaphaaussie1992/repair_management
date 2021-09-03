@@ -4,13 +4,15 @@ use app\models\JobCard;
 use app\models\JobCardSearch;
 use app\models\Users;
 use kartik\checkbox\CheckboxX;
+use kartik\grid\GridView as GridView2;
+use richardfan\widget\JSRegister;
 use yii\data\ActiveDataProvider;
 use yii\grid\ActionColumn;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\web\View;
 use yii\widgets\Pjax;
-use kartik\grid\GridView as GridView2;
 
 /* @var $this View */
 /* @var $searchModel JobCardSearch */
@@ -191,11 +193,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         $user = Users::findOne(["id" => Yii::$app->user->id]);
                         if (Users::isBranchRole()) {
-
+/////////////honn bdde edb3at l model->id
                             $urlsend = "/job-card/recieve-from-service";
-                            return Html::a('<span class=" glyphicon glyphicon-inbox "></span>', [$urlsend, 'id' => $model->id], [
+                            return Html::a(' <span class=" glyphicon glyphicon-inbox "></span>', [$urlsend, 'id' => $model->id], [
                                         'class' => 'btn btn-primary btn-xs my-ajax',
                                         'style' => ' background-color: #32CD30 ',
+                                        'id' => 'recieve-button',
                                         'title' => 'Recieve from ServiceCenter',
                                         'data' => [
                                             'confirm' => Yii::t('app', 'Are you sure you want to Recieve this item?'),
@@ -228,3 +231,53 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Pjax::end(); ?>
 
 </div>
+
+
+<?php
+JSRegister::begin([
+    'id' => '1',
+    'position' => static::POS_END
+]);
+?>
+
+<script>
+
+    $("#recieve-button").on('click', function () {
+
+        alert("manfa5");
+        return;
+//        alert(request.getParameter("action"); );
+//        var result = confirm("هل أنت متأكد؟");
+//        if (result) {
+//w hon bdde b3ataa lal api
+        $.ajax({
+            url: '<?php Url::toRoute("/site/send-message-item-ready") ?>',
+            type: "POST",
+            data: {
+                id: '5', ///ah sa7 jarrabet ra2em 3ade raddet error
+            },
+            success: function (data) {
+
+                if (data["success"] == true) {
+                    console.log(data);
+                    alert("meshe l7al");
+                } else {
+                    console.log("error");
+                    alert('error');
+                }
+            },
+            error: function (errormessage) {
+                console.log("not working");
+            }
+        });
+//        }
+
+//        $message = Yii::$app->twilio->sms('+96181756788', 'Hello World! sssss');
+
+    });
+
+</script>
+
+<?php
+JSRegister::end();
+?>

@@ -2,10 +2,14 @@
 
 namespace app\controllers;
 
+use app\models\Branch;
+use app\models\Item;
 use app\models\JobCard;
+use app\models\JobCardDetailsModel;
 use app\models\JobCardItems;
 use app\models\JobCardItemsSearch;
 use app\models\JobCardSearch;
+use app\models\Status;
 use app\models\Users;
 use Yii;
 use yii\db\Exception;
@@ -236,6 +240,7 @@ class JobCardController extends Controller {
         if ($item) {
 
 
+
             $item->current_location = JobCard::LOCATION_SERVICE;
             $item->update();
             $item->save();
@@ -269,6 +274,10 @@ class JobCardController extends Controller {
             $item->current_location = JobCard::LOCATION_BRANCH;
             $item->update();
             $item->save();
+
+
+
+
 //            $jobcarditem = JobCardItems::find()
 //                    ->where(['job_card_id' => $item->job_card_id])
 //                    ->andWhere(['current_location' => JobCard::LOCATION_SENT_TO_BRANCH])
