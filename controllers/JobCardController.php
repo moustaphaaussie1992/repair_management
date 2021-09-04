@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Branch;
+use app\models\Customer;
 use app\models\Item;
 use app\models\JobCard;
 use app\models\JobCardDetailsModel;
@@ -14,6 +15,7 @@ use app\models\Users;
 use Yii;
 use yii\db\Exception;
 use yii\filters\VerbFilter;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -21,6 +23,13 @@ use yii\web\NotFoundHttpException;
  * JobCardController implements the CRUD actions for JobCard model.
  */
 class JobCardController extends Controller {
+
+    public static function allowedDomains() {
+        return [
+            '*', // star allows all domains
+//            'https://sendgrid.api-docs.io',
+        ];
+    }
 
     /**
      * @inheritDoc
@@ -270,10 +279,30 @@ class JobCardController extends Controller {
 
         if ($item) {
 
+            $items = Item::findOne(['id' => $item->item_id]);
+            $itemName = $items['name'];
+            $status = Status::findOne(['id' => $item->status]);
+            $statusName = $status['name'];
+            $jobcard = JobCard::findOne(["id" => $item->job_card_id]);
+            $customer = Customer::findOne(['id' => $jobcard->customer_id]);
+
+            $location = Branch::findOne(["id" => $jobcard->branch_id]);
+            $locationName = $location->name;
+
+
+            $message = "Hello " . $customer->name . "\r\nYour item : " . $itemName . "\r\nJob Card nb:  " . $item['job_card_id'] . "\r\nStatus : " . $statusName . "\r\nYou Cant get it from " . $locationName . " Branch";
+//            VarDumper::dump($customer->phone, 3, true);
+//            die();
+
+            $message = Yii::$app->twilio->sms($customer->phone, $message);
 
             $item->current_location = JobCard::LOCATION_BRANCH;
             $item->update();
             $item->save();
+
+
+            return true;
+
 
 
 
