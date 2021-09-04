@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);   ?>
 
     <?php
 //    GridView::widget([
@@ -192,33 +192,52 @@ $this->params['breadcrumbs'][] = $this->title;
                         $urlsend = null;
 
                         $user = Users::findOne(["id" => Yii::$app->user->id]);
+//                        if (Users::isBranchRole()) {
+///////////////honn bdde edb3at l model->id
+//                            $urlsend = "/job-card/recieve-from-service";
+//                            return Html::a(' <span class=" glyphicon glyphicon-inbox "></span>', [$urlsend, 'id' => $model->id], [
+//                                        'class' => 'btn btn-primary btn-xs my-ajax',
+//                                        'style' => ' background-color: #32CD30 ',
+//                                        'id' => 'recieve-button',
+//                                        'title' => 'Recieve from ServiceCenter',
+//                                        'data' => [
+//                                            'confirm' => Yii::t('app', 'Are you sure you want to Recieve this item?'),
+//                                            'title' => Yii::t('app', 'Confirmation'),
+//                                            'ok' => Yii::t('app', 'OK'),
+//                                            'cancel' => Yii::t('app', 'Cancel'),
+//                                        ]
+//                            ]);
+//                        } elseif (Users::isServiceRole()) {
+//                            $urlsend = "/job-card/recieve-from-branch";
+//                            return Html::a('<span class="glyphicon glyphicon-inbox"></span>', [$urlsend, 'id' => $model->id], [
+//                                        'class' => 'btn btn-primary btn-xs my-ajax',
+//                                        'style' => ' background-color: #337ab7 ',
+//                                        'title' => 'Recieve from Branch',
+//                                        'data' => [
+//                                            'confirm' => Yii::t('app', 'Are you sure you want to Recieve this item?'),
+//                                            'title' => Yii::t('app', 'Confirmation'),
+//                                            'ok' => Yii::t('app', 'OK'),
+//                                            'cancel' => Yii::t('app', 'Cancel'),
+//                                        ]
+//                            ]);
+//                        }
                         if (Users::isBranchRole()) {
 /////////////honn bdde edb3at l model->id
                             $urlsend = "/job-card/recieve-from-service";
-                            return Html::a(' <span class=" glyphicon glyphicon-inbox "></span>', [$urlsend, 'id' => $model->id], [
-                                        'class' => 'btn btn-primary btn-xs my-ajax',
+                            return Html::a('<span class=" glyphicon glyphicon-inbox "></span>', null, [
+                                        'class' => 'btn btn-primary btn-xs my-ajax recieve-from-service-button',
                                         'style' => ' background-color: #32CD30 ',
-                                        'id' => 'recieve-button',
-                                        'title' => 'Recieve from ServiceCenter',
-                                        'data' => [
-                                            'confirm' => Yii::t('app', 'Are you sure you want to Recieve this item?'),
-                                            'title' => Yii::t('app', 'Confirmation'),
-                                            'ok' => Yii::t('app', 'OK'),
-                                            'cancel' => Yii::t('app', 'Cancel'),
-                                        ]
+                                        'calss' => 'recieve-button',
+                                        'title' => 'Recieve from Service Center',
+                                        'itemId' => $model->id
                             ]);
                         } elseif (Users::isServiceRole()) {
                             $urlsend = "/job-card/recieve-from-branch";
-                            return Html::a('<span class="glyphicon glyphicon-inbox"></span>', [$urlsend, 'id' => $model->id], [
-                                        'class' => 'btn btn-primary btn-xs my-ajax',
+                            return Html::a('<span class="glyphicon glyphicon-inbox"></span>', null, [
+                                        'class' => 'btn btn-primary btn-xs my-ajax recieve-from-branch-button',
                                         'style' => ' background-color: #337ab7 ',
                                         'title' => 'Recieve from Branch',
-                                        'data' => [
-                                            'confirm' => Yii::t('app', 'Are you sure you want to Recieve this item?'),
-                                            'title' => Yii::t('app', 'Confirmation'),
-                                            'ok' => Yii::t('app', 'OK'),
-                                            'cancel' => Yii::t('app', 'Cancel'),
-                                        ]
+                                        'itemId' => $model->id
                             ]);
                         }
                     },
@@ -242,39 +261,87 @@ JSRegister::begin([
 
 <script>
 
-//    $("#recieve-button").on('click', function () {
-//
-//        alert("manfa5");
+    $(".recieve-from-service-button").on('click', function () {
+
+        var txt;
+        var r = confirm("Are You Sure!");
+        if (r == true) {
+            var id = $(this).attr("itemId");
+            var url = '<?= Url::toRoute("job-card/recieve-from-service") ?>';
+//        alert(id);
 //        return;
-////        alert(request.getParameter("action"); );
-////        var result = confirm("هل أنت متأكد؟");
-////        if (result) {
-////w hon bdde b3ataa lal api
-//        $.ajax({
-//            url: '<?php Url::toRoute("/site/send-message-item-ready") ?>',
-//            type: "POST",
-//            data: {
-//                id: '5', ///ah sa7 jarrabet ra2em 3ade raddet error
-//            },
-//            success: function (data) {
-//
-//                if (data["success"] == true) {
-//                    console.log(data);
-//                    alert("meshe l7al");
-//                } else {
-//                    console.log("error");
-//                    alert('error');
-//                }
-//            },
-//            error: function (errormessage) {
-//                console.log("not working");
-//            }
-//        });
-////        }
-//
-////        $message = Yii::$app->twilio->sms('+96181756788', 'Hello World! sssss');
-//
-//    });
+//        alert(request.getParameter("action"); );
+//        var result = confirm("هل أنت متأكد؟");
+//        if (result) {
+//w hon bdde b3ataa lal api
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    id: id, ///ah sa7 jarrabet ra2em 3ade raddet error
+                },
+                success: function (data) {
+                    console.log(data);
+                    if (data["success"] == true) {
+                        alert(data["message"]);
+                    } else {
+                        console.log(data["message"]);
+                    }
+                },
+                error: function (errormessage) {
+                    console.log("not working");
+                }
+            });
+//        }
+
+//        $message = Yii::$app->twilio->sms('+96181756788', 'Hello World! sssss');
+
+        } else {
+
+        }
+
+    });
+
+    $(".recieve-from-branch-button").on('click', function () {
+
+        var txt;
+        var r = confirm("Are You Sure!");
+        if (r == true) {
+            var id = $(this).attr("itemId");
+            var url = '<?= Url::toRoute("job-card/recieve-from-branch") ?>';
+//        alert(id);
+//        return;
+//        alert(request.getParameter("action"); );
+//        var result = confirm("هل أنت متأكد؟");
+//        if (result) {
+//w hon bdde b3ataa lal api
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    id: id, ///ah sa7 jarrabet ra2em 3ade raddet error
+                },
+                success: function (data) {
+                    console.log(data);
+                    if (data["success"] == true) {
+                        alert(data["message"]);
+                    } else {
+                        console.log(data["message"]);
+                    }
+                },
+                error: function (errormessage) {
+                    console.log("not working");
+                }
+            });
+//        }
+
+//        $message = Yii::$app->twilio->sms('+96181756788', 'Hello World! sssss');
+
+        } else {
+
+        }
+
+    });
 
 </script>
 

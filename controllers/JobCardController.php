@@ -15,9 +15,9 @@ use app\models\Users;
 use Yii;
 use yii\db\Exception;
 use yii\filters\VerbFilter;
-use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 /**
  * JobCardController implements the CRUD actions for JobCard model.
@@ -243,6 +243,11 @@ class JobCardController extends Controller {
 
     public function actionRecieveFromBranch($id) {
 
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $request = Yii::$app->request;
+        $post = $request->post();
+        $id = $post["id"];
+
         $item = JobCardItems::findOne(['id' => $id]);
 
 
@@ -253,6 +258,12 @@ class JobCardController extends Controller {
             $item->current_location = JobCard::LOCATION_SERVICE;
             $item->update();
             $item->save();
+
+            return [
+                "success" => true,
+                "message" => "successfully recieved item from branch"
+            ];
+
 //            $jobcarditem = JobCardItems::find()
 //                    ->where(['job_card_id' => $item->job_card_id])
 //                    ->andWhere(['current_location' => JobCard::LOCATION_SENT_TO_SERVICE])
@@ -267,12 +278,16 @@ class JobCardController extends Controller {
 //                }
 //            }
 //            return $this->redirect(['job-card/view2', 'id' => $item->job_card_id]);
-
-            return $this->redirect(['job-card-items/recieve']);
+//            return $this->redirect(['job-card-items/recieve']);
         }
     }
 
-    public function actionRecieveFromService($id) {
+    public function actionRecieveFromService() {
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $request = Yii::$app->request;
+        $post = $request->post();
+        $id = $post["id"];
 
         $item = JobCardItems::findOne(['id' => $id]);
 
@@ -291,17 +306,23 @@ class JobCardController extends Controller {
 
 
             $message = "Hello " . $customer->name . "\r\nYour item : " . $itemName . "\r\nJob Card nb:  " . $item['job_card_id'] . "\r\nStatus : " . $statusName . "\r\nYou Cant get it from " . $locationName . " Branch";
-//            VarDumper::dump($customer->phone, 3, true);
-//            die();
 
-            $message = Yii::$app->twilio->sms($customer->phone, $message);
+//            return [
+//                "success" => true,
+//                "message" => "successfully recieved item from service center"
+//            ];
 
+            $message = Yii::$app->twilio->sms($customer->phone, $message, ['from' => '+16503185356']);
+//, ['from' => '+16503185356']
             $item->current_location = JobCard::LOCATION_BRANCH;
             $item->update();
             $item->save();
 
+            return [
+                "success" => true,
+                "message" => "successfully recieved item from service center"
+            ];
 
-            return true;
 
 
 
@@ -318,7 +339,11 @@ class JobCardController extends Controller {
 //                    return $this->redirect(['job-card-items/recieve']);
 //                }
 //            }
-            return $this->redirect(['job-card-items/recieve']);
+        } else {
+            return [
+                "success" => false,
+                "message" => "item does not exist"
+            ];
         }
     }
 
