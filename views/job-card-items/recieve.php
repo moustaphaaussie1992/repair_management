@@ -242,39 +242,39 @@ JSRegister::begin([
 
 <script>
 
-    $("#recieve-button").on('click', function () {
-
-        alert("manfa5");
-        return;
-//        alert(request.getParameter("action"); );
-//        var result = confirm("هل أنت متأكد؟");
-//        if (result) {
-//w hon bdde b3ataa lal api
-        $.ajax({
-            url: '<?php Url::toRoute("/site/send-message-item-ready") ?>',
-            type: "POST",
-            data: {
-                id: '5', ///ah sa7 jarrabet ra2em 3ade raddet error
-            },
-            success: function (data) {
-
-                if (data["success"] == true) {
-                    console.log(data);
-                    alert("meshe l7al");
-                } else {
-                    console.log("error");
-                    alert('error');
-                }
-            },
-            error: function (errormessage) {
-                console.log("not working");
-            }
-        });
-//        }
-
-//        $message = Yii::$app->twilio->sms('+96181756788', 'Hello World! sssss');
-
-    });
+//    $("#recieve-button").on('click', function () {
+//
+//        alert("manfa5");
+//        return;
+////        alert(request.getParameter("action"); );
+////        var result = confirm("هل أنت متأكد؟");
+////        if (result) {
+////w hon bdde b3ataa lal api
+//        $.ajax({
+//            url: '<?php Url::toRoute("/site/send-message-item-ready") ?>',
+//            type: "POST",
+//            data: {
+//                id: '5', ///ah sa7 jarrabet ra2em 3ade raddet error
+//            },
+//            success: function (data) {
+//
+//                if (data["success"] == true) {
+//                    console.log(data);
+//                    alert("meshe l7al");
+//                } else {
+//                    console.log("error");
+//                    alert('error');
+//                }
+//            },
+//            error: function (errormessage) {
+//                console.log("not working");
+//            }
+//        });
+////        }
+//
+////        $message = Yii::$app->twilio->sms('+96181756788', 'Hello World! sssss');
+//
+//    });
 
 </script>
 
