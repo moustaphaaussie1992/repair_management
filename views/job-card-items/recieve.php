@@ -278,7 +278,7 @@ JSRegister::begin([
                 url: url,
                 type: "POST",
                 data: {
-                    id: id, ///ah sa7 jarrabet ra2em 3ade raddet error
+                    "id": id, ///ah sa7 jarrabet ra2em 3ade raddet error
                 },
                 success: function (data) {
                     console.log(data);
@@ -319,7 +319,7 @@ JSRegister::begin([
                 url: url,
                 type: "POST",
                 data: {
-                    id: id, ///ah sa7 jarrabet ra2em 3ade raddet error
+                    "id": id, ///ah sa7 jarrabet ra2em 3ade raddet error
                 },
                 success: function (data) {
                     console.log(data);

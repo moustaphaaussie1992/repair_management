@@ -24,28 +24,81 @@ use yii\widgets\ActiveForm;
     <?php //$form->field($model, 'job_card_id')->textInput() ?>
 
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <?=
-    $form->field($model, 'item_id')->widget(Select2::classname(), [
-        'data' => ArrayHelper::map(Item::find()->all(), 'id', function($model) {
-                    return $model['code'] . "/" . $model['name'];
-                }),
-        'options' => [
+
+    <?php
+    $user = Users::findOne(["id" => Yii::$app->user->id]);
+    if (Users::isServiceRole()) {
+        echo $form->field($model, 'item_id')->widget(Select2::classname(), [
+            'data' => ArrayHelper::map(Item::find()->all(), 'id', function($model) {
+                        return $model['code'] . "/" . $model['name'];
+                    }),
+            'options' => [
 //            'id' => 'test',
-            'placeholder' => Yii::t("app", "Select "),
+                'placeholder' => Yii::t("app", "Select "),
 //            'dir' => 'rtl',
-        ],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ])->label("Item");
+            ],
+            'pluginOptions' => [
+                'allowClear' => true,
+                'disabled' => true
+            ],
+        ])->label("Item");
+    } else {
+        echo $form->field($model, 'item_id')->widget(Select2::classname(), [
+            'data' => ArrayHelper::map(Item::find()->all(), 'id', function($model) {
+                        return $model['code'] . "/" . $model['name'];
+                    }),
+            'options' => [
+//            'id' => 'test',
+                'placeholder' => Yii::t("app", "Select "),
+//            'dir' => 'rtl',
+            ],
+            'pluginOptions' => [
+                'allowClear' => true,
+            ],
+        ])->label("Item");
+    }
     ?>
 
 
 
-    <?=
-    $form->field($model, 'warranty')->widget(CheckboxX::className(), [
+    <?php
+    $user = Users::findOne(["id" => Yii::$app->user->id]);
+
+    if (!Users::isServiceRole()) {
+
+
+        echo $form->field($model, 'warranty')->widget(CheckboxX::className(), [
+//        'name' => 's_1',
+//        'options' => ['id' => 's_1'],
+            'pluginOptions' => ['threeState' => false]
+        ]);
+
+
+
+
+
+
+        echo $form->field($model, 'warranty_type')->widget(Select2::classname(), [
+            'data' => ArrayHelper::map(WarrantyType::find()->all(), 'id', function($model) {
+                        return $model['name'];
+                    }),
+            'options' => [
+//            'id' => 'test',
+                'placeholder' => Yii::t("app", "Select "),
+//            'dir' => 'rtl',
+            ],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ])->label("Warranty Type");
+
+
+
+        echo $form->field($model, 'description')->textarea(['rows' => 6]);
+    }
+
+    echo $form->field($model, 'is_confirmed')->widget(CheckboxX::className(), [
 //        'name' => 's_1',
 //        'options' => ['id' => 's_1'],
         'pluginOptions' => ['threeState' => false]
@@ -54,35 +107,11 @@ use yii\widgets\ActiveForm;
 
 
 
-
-    <?=
-    $form->field($model, 'warranty_type')->widget(Select2::classname(), [
-        'data' => ArrayHelper::map(WarrantyType::find()->all(), 'id', function($model) {
-                    return $model['name'];
-                }),
-        'options' => [
-//            'id' => 'test',
-            'placeholder' => Yii::t("app", "Select "),
-//            'dir' => 'rtl',
-        ],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ])->label("Warranty Type");
-    ?>
-
-    <?php // $form->field($model, 'status')->textInput() ?>
-
-    <?php // $form->field($model, 'current_location')->textInput() ?>
-
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-
-
     <?php
     $user = Users::findOne(["id" => Yii::$app->user->id]);
 
     if (Users::isServiceRole()) {
-        echo $form->field($model, 'cost')->textInput();
+//        echo $form->field($model, 'cost')->textInput();
         echo $form->field($model, 'status')->widget(Select2::classname(), [
             'data' => ArrayHelper::map(Status::find()->all(), 'id', function($model) {
                         return $model['name'];

@@ -16,7 +16,8 @@ use Yii;
  * @property int $status
  * @property int $current_location
  * @property string $description
- *
+ * @property int|null $is_confirmed
+ * @property int $email_sent
  * @property Location $currentLocation
  * @property Item $item
  * @property JobCard $jobCard
@@ -38,7 +39,7 @@ class JobCardItems extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['job_card_id', 'item_id', 'warranty', 'status', 'current_location', 'description'], 'required'],
-            [['job_card_id', 'item_id', 'cost', 'warranty', 'warranty_type', 'status', 'current_location'], 'integer'],
+            [['job_card_id', 'item_id', 'cost', 'warranty', 'warranty_type', 'status', 'current_location', 'is_confirmed', 'email_sent'], 'integer'],
             [['description'], 'string'],
             [['job_card_id', 'item_id'], 'unique', 'targetAttribute' => ['job_card_id', 'item_id']],
             [['job_card_id'], 'exist', 'skipOnError' => true, 'targetClass' => JobCard::className(), 'targetAttribute' => ['job_card_id' => 'id']],
@@ -63,6 +64,8 @@ class JobCardItems extends \yii\db\ActiveRecord {
             'status' => 'Status',
             'current_location' => 'Current Location',
             'description' => 'Description',
+            'is_confirmed' => 'Is Confirmed',
+            'email_sent' => 'Email Sent',
         ];
     }
 

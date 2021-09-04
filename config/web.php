@@ -114,9 +114,12 @@ $config = [
 //        ],
         'twilio' => [
             'class' => '\dosamigos\twilio\TwilioComponent',
-            'sid' => 'AC4821e6dd86449442269a9552b93387d0',
-            'token' => '6c5a0d2f74306fe55a4bb553d96b7df4',
-            'phoneNumber' => '+16503185356'
+            'sid' => 'ACd73493656e9c9d7761e0843895fd69b4',
+            'token' => 'd1491411de1d2cd1acca7f4f27b77635',
+            'phoneNumber' => '+13302720108'
+//            'sid' => 'AC4821e6dd86449442269a9552b93387d0',
+//            'token' => '6c5a0d2f74306fe55a4bb553d96b7df4',
+//            'phoneNumber' => '+16503185356'
         ]
     ],
     'modules' => [
