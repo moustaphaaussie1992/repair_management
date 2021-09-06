@@ -11,7 +11,7 @@ $this->title = Yii::t('rbac-admin', 'Change Password');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="portlet box bg-red col-md-6 ">
+<div class="portlet box col-md-6 ">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
