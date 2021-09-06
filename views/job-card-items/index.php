@@ -5,12 +5,20 @@ use app\models\JobCardItemsSearch;
 use app\models\Users;
 use kartik\checkbox\CheckboxX;
 use kartik\grid\GridView as GridView2;
+use lo\widgets\modal\ModalAjax;
 use yii\data\ActiveDataProvider;
 use yii\grid\ActionColumn;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\Pjax;
+
+echo ModalAjax::widget([
+    'id' => 'my-ajax',
+    'selector' => '.my-ajax', // all buttons in grid view with href attribute
+    'options' => ['class' => '', 'tabindex' => false],
+    'autoClose' => true,
+]);
 
 /* @var $this View */
 /* @var $searchModel JobCardItemsSearch */

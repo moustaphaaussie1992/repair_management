@@ -21,14 +21,13 @@ class JobCardItemsController extends Controller {
      */
     public function behaviors() {
         return array_merge(
-                parent::behaviors(),
-                [
-                    'verbs' => [
-                        'class' => VerbFilter::className(),
-                        'actions' => [
-                            'delete' => ['POST'],
-                        ],
-                    ],
+                parent::behaviors(), [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
                 ]
         );
     }

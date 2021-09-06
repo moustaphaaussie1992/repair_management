@@ -29,20 +29,20 @@ use yii\widgets\ActiveForm;
     <?php
     $user = Users::findOne(["id" => Yii::$app->user->id]);
     if (Users::isServiceRole()) {
-        echo $form->field($model, 'item_id')->widget(Select2::classname(), [
-            'data' => ArrayHelper::map(Item::find()->all(), 'id', function($model) {
-                        return $model['code'] . "/" . $model['name'];
-                    }),
-            'options' => [
-//            'id' => 'test',
-                'placeholder' => Yii::t("app", "Select "),
-//            'dir' => 'rtl',
-            ],
-            'pluginOptions' => [
-                'allowClear' => true,
-                'disabled' => true
-            ],
-        ])->label("Item");
+//        echo $form->field($model, 'item_id')->widget(Select2::classname(), [
+//            'data' => ArrayHelper::map(Item::find()->all(), 'id', function($model) {
+//                        return $model['code'] . "/" . $model['name'];
+//                    }),
+//            'options' => [
+////            'id' => 'test',
+//                'placeholder' => Yii::t("app", "Select "),
+////            'dir' => 'rtl',
+//            ],
+//            'pluginOptions' => [
+//                'allowClear' => true,
+//                'disabled' => true
+//            ],
+//        ])->label("Item");
     } else {
         echo $form->field($model, 'item_id')->widget(Select2::classname(), [
             'data' => ArrayHelper::map(Item::find()->all(), 'id', function($model) {
