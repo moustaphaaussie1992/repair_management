@@ -217,7 +217,11 @@ class JobCardController extends Controller {
         if ($item) {
 
             if ($item->status == JobCard::STATUS_UNDER_REPAIR) {
-                return "items still under repair";
+
+                return [
+                    "success" => false,
+                    "message" => "The item status still under repair, Update item status before sending it"
+                ];
             } else {
                 $item->current_location = JobCard::LOCATION_SENT_TO_BRANCH;
                 $item->update();
@@ -241,7 +245,7 @@ class JobCardController extends Controller {
         }
     }
 
-    public function actionRecieveFromBranch($id) {
+    public function actionRecieveFromBranch() {
 
         Yii::$app->response->format = Response::FORMAT_JSON;
         $request = Yii::$app->request;
@@ -253,7 +257,25 @@ class JobCardController extends Controller {
 
         if ($item) {
 
+            $items = Item::findOne(['id' => $item->item_id]);
+            $itemName = $items['name'];
+            $status = Status::findOne(['id' => $item->status]);
+            $statusName = $status['name'];
+            $jobcard = JobCard::findOne(["id" => $item->job_card_id]);
+            $customer = Customer::findOne(['id' => $jobcard->customer_id]);
 
+            $location = Branch::findOne(["id" => $jobcard->branch_id]);
+            $locationName = $location->name;
+
+
+            $message = "Hello " . $customer->name . "\r\nYour item : " . $itemName . "\r\nJob Card nb:  " . $item['job_card_id'] . "\r\nIs recieved By G4L Service Center";
+
+//            return [
+//                "success" => true,
+//                "message" => "successfully recieved item from service center"
+//            ];
+//            $message = Yii::$app->twilio->sms($customer->phone, $message, ['from' => '+16503185356']);
+            $message = Yii::$app->twilio->sms($customer->phone, $message, ['from' => '+13302720108']);
 
             $item->current_location = JobCard::LOCATION_SERVICE;
             $item->update();
@@ -311,9 +333,16 @@ class JobCardController extends Controller {
 //                "success" => true,
 //                "message" => "successfully recieved item from service center"
 //            ];
-
-            $message = Yii::$app->twilio->sms($customer->phone, $message, ['from' => '+16503185356']);
+//            $message = Yii::$app->twilio->sms($customer->phone, $message, ['from' => '+16503185356']);
+            $message = Yii::$app->twilio->sms($customer->phone, $message, ['from' => '+13302720108']);
 //, ['from' => '+16503185356']
+
+            Yii::$app->mailer->compose()
+                    ->setFrom('service.get4lessghana@gmail.com')
+                    ->setTo($customer->email)
+                    ->setSubject("Item Ready")
+                    ->setTextBody($message)
+                    ->send();
             $item->current_location = JobCard::LOCATION_BRANCH;
             $item->update();
             $item->save();
@@ -365,6 +394,76 @@ class JobCardController extends Controller {
         return $this->render('job-card-details', [
                     'model' => $model
         ]);
+    }
+
+    public function actionRequestCostConfirmation() {
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $request = Yii::$app->request;
+        $post = $request->post();
+        $id = $post["id"];
+        $cost = $post["cost"];
+
+        $item = JobCardItems::findOne(['id' => $id]);
+
+
+        if ($item) {
+
+            $items = Item::findOne(['id' => $item->item_id]);
+            $itemName = $items['name'];
+            $status = Status::findOne(['id' => $item->status]);
+            $statusName = $status['name'];
+            $jobcard = JobCard::findOne(["id" => $item->job_card_id]);
+            $customer = Customer::findOne(['id' => $jobcard->customer_id]);
+
+            $location = Branch::findOne(["id" => $jobcard->branch_id]);
+            $locationName = $location->name;
+
+
+            $message = "Hello " . $customer->name . "\r\nYour item : " . $itemName . "\r\nJob Card nb:  " . $item['job_card_id'] . "\r\nRepairing Cost is : " . $cost . "\r\nAwaiting Your approve to start repairing";
+
+//            return [
+//                "success" => true,
+//                "message" => "successfully recieved item from service center"
+//            ];
+//            $message = Yii::$app->twilio->sms($customer->phone, $message, ['from' => '+16503185356']);
+//            $message = Yii::$app->twilio->sms($customer->phone, $message, ['from' => '+13302720108']);
+//, ['from' => '+16503185356']
+
+            Yii::$app->mailer->compose()
+                    ->setFrom('service.get4lessghana@gmail.com')
+                    ->setTo($customer->email)
+                    ->setSubject("Item Repairing Cost Confirmation")
+                    ->setTextBody($message)
+                    ->send();
+            $item->email_sent = 1;
+            $item->cost = $cost;
+            $item->update();
+            if ($item->save()) {
+                return $this->redirect('job-card-items/indexinstock');
+            }
+
+//            return [
+//                "success" => true,
+//                "message" => "successfully recieved item from service center"
+//            ];
+//            $jobcarditem = JobCardItems::find()
+//                    ->where(['job_card_id' => $item->job_card_id])
+//                    ->andWhere(['current_location' => JobCard::LOCATION_SENT_TO_BRANCH])
+//                    ->all();
+//            if (!$jobcarditem) {
+//                $jobcard = JobCard::findOne(['id' => $item->job_card_id]);
+//                $jobcard->current_location = JobCard::LOCATION_BRANCH;
+//                if ($jobcard->save()) {
+//                    return $this->redirect(['job-card-items/recieve']);
+//                }
+//            }
+        } else {
+            return [
+                "success" => false,
+                "message" => "item does not exist"
+            ];
+        }
     }
 
 }
