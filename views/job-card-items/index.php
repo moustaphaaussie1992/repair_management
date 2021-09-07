@@ -2,12 +2,16 @@
 
 use app\models\JobCard;
 use app\models\JobCardItemsSearch;
+use app\models\Location;
+use app\models\Status;
 use app\models\Users;
+use app\models\WarrantyType;
 use kartik\checkbox\CheckboxX;
 use kartik\grid\GridView as GridView2;
 use lo\widgets\modal\ModalAjax;
 use yii\data\ActiveDataProvider;
 use yii\grid\ActionColumn;
+use yii\grid\DataColumn;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\web\View;
@@ -19,6 +23,7 @@ echo ModalAjax::widget([
     'options' => ['class' => '', 'tabindex' => false],
     'autoClose' => true,
 ]);
+
 
 /* @var $this View */
 /* @var $searchModel JobCardItemsSearch */
@@ -36,8 +41,8 @@ $this->params['breadcrumbs'][] = $this->title;
 //        Html::a('Create Job Card Items', ['create'], ['class' => 'btn btn-success'])
         ?>
     </p>
-
-    <?php Pjax::begin(); ?>
+    <?php Pjax::begin(['id' => 'pjax-main', 'enableReplaceState' => false, 'linkSelector' => '#pjax-main ul.pagination a, th a', 'clientOptions' => ['pjax:success' => 'function(){alert("yo")}']]) ?>
+    <?php //Pjax::begin(); ?>
     <?php
     // echo $this->render('_search', ['model' => $searchModel]);
 
@@ -73,9 +78,35 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 //            'id',
 //            'job_card_id',
-//            'item_',
-            ['label' => 'Item Name',
-                'attribute' => 'item.name'],
+//            'item_id',
+            [
+                'class' => DataColumn::className(),
+                'attribute' => 'item_id',
+                'value' => function ($model) {
+                    if ($rel = $model->item) {
+                        return Html::a($rel->name, ['item/view', 'id' => $rel->id,], ['data-pjax' => 0]);
+                    } else {
+                        return '';
+                    }
+                },
+                'format' => 'raw',
+            ],
+            ['label' => 'Branch',
+                'attribute' => 'jobCard.branch.name'],
+//            [
+//                'class' => DataColumn::className(),
+//                'attribute' => 'branch',
+//                'value' => function ($model) {
+//                    if ($rel = $model->status0) {
+//                        return Html::a($rel->name, ['branch/view', 'id' => $rel->id,], ['data-pjax' => 0]);
+//                    } else {
+//                        return '';
+//                    }
+//                },
+//                'format' => 'raw',
+//            ],
+//            ['label' => 'Item Name',
+//                'attribute' => 'item.name'],
             'cost',
             [
                 'attribute' => 'warranty',
@@ -91,12 +122,60 @@ $this->params['breadcrumbs'][] = $this->title;
                     'pluginOptions' => ['threeState' => true]
                 ]),
             ],
-            ['label' => 'Warranty Type',
-                'attribute' => 'warrantyType.name'],
-            ['label' => 'Status',
-                'attribute' => 'status0.name'],
-            ['label' => 'Current Location',
-                'attribute' => 'currentLocation.name'],
+            [
+//                'class' => DataColumn::className(),
+                'attribute' => 'warranty_type',
+                'value' => function ($model) {
+                    if ($rel = $model->warrantyType) {
+                        return Html::a($rel->name, ['warranty_type/view', 'id' => $rel->id,], ['data-pjax' => 0]);
+                    } else {
+                        return '';
+                    }
+                },
+                'format' => 'raw',
+                'filterType' => GridView2::FILTER_SELECT2,
+                'filter' => ArrayHelper::map(WarrantyType::find()->orderBy('id')->asArray()->all(), 'name', 'name'),
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => 'Warranty'],
+            ],
+            [
+//                'class' => DataColumn::className(),
+                'attribute' => 'status',
+                'value' => function ($model) {
+                    if ($rel = $model->status0) {
+                        return Html::a($rel->name, ['status/view', 'id' => $rel->id,], ['data-pjax' => 0]);
+                    } else {
+                        return '';
+                    }
+                },
+                'format' => 'raw',
+                'filterType' => GridView2::FILTER_SELECT2,
+                'filter' => ArrayHelper::map(Status::find()->orderBy('id')->asArray()->all(), 'name', 'name'),
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => 'Status'],
+            ],
+            [
+//                'class' => DataColumn::className(),
+                'attribute' => 'current_location',
+                'value' => function ($model) {
+                    if ($rel = $model->currentLocation) {
+                        return Html::a($rel->name, ['location/view', 'id' => $rel->id,], ['data-pjax' => 0]);
+                    } else {
+                        return '';
+                    }
+                },
+                'format' => 'raw',
+                'filterType' => GridView2::FILTER_SELECT2,
+                'filter' => ArrayHelper::map(Location::find()->orderBy('id')->asArray()->all(), 'name', 'name'),
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => 'Current Location'],
+            ],
             'description:ntext',
             [
                 'contentOptions' => ['style' => 'width:200px;'],
@@ -106,7 +185,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'buttons' => [
                     'view' => function ($url, $model) {
                         return Html::a('<span class="glyphicon glyphicon-eye-open "></span>', ['/job-card/view2', 'id' => $model->id], [
-                                    'class' => 'btn btn-primary btn-xs my-ajax',
+                                    'class' => 'btn btn-primary btn-xs my-ajax  ',
                                     'style' => ' background-color: #20507B ',
                                     'title' => 'edit'
                         ]);

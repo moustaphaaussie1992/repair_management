@@ -328,7 +328,12 @@ class JobCardController extends Controller {
 
 
             $message = "Hello " . $customer->name . "\r\nYour item : " . $itemName . "\r\nJob Card nb:  " . $item['job_card_id'] . "\r\nStatus : " . $statusName . "\r\nYou Cant get it from " . $locationName . " Branch";
-
+            Yii::$app->mailer->compose()
+                    ->setFrom('service.get4lessghana@gmail.com')
+                    ->setTo($customer->email)
+                    ->setSubject("Item Ready")
+                    ->setTextBody($message)
+                    ->send();
 //            return [
 //                "success" => true,
 //                "message" => "successfully recieved item from service center"

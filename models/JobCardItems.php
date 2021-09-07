@@ -16,7 +16,7 @@ use Yii;
  * @property int $status
  * @property int $current_location
  * @property string $description
- * @property int|null $is_confirmed
+ * @property int|null $is_confirmedSS
  * @property int $email_sent
  * @property Location $currentLocation
  * @property Item $item

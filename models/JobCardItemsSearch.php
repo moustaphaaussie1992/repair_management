@@ -17,8 +17,8 @@ class JobCardItemsSearch extends JobCardItems {
      */
     public function rules() {
         return [
-            [['id', 'job_card_id', 'item_id', 'cost', 'warranty', 'warranty_type', 'status', 'current_location'], 'integer'],
-            [['description'], 'safe'],
+            [['id', 'job_card_id', 'cost', 'warranty',], 'integer'],
+            [['description', 'warranty_type', 'status', 'current_location', 'item_id', 'branch'], 'safe'],
         ];
     }
 
@@ -38,8 +38,14 @@ class JobCardItemsSearch extends JobCardItems {
      * @return ActiveDataProvider
      */
     public function search($params) {
-        $query = JobCardItems::find();
-
+        $query = JobCardItems::find()
+                ->joinWith('warrantyType')
+                ->joinWith('status0')
+                ->joinWith('item')
+                ->joinWith('jobCard')
+                ->joinWith('currentLocation');
+//                ->join("left", "branch")
+//                ->leftJoin('branch', 'jobCard.branch_id = branch.id');
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -58,15 +64,17 @@ class JobCardItemsSearch extends JobCardItems {
         $query->andFilterWhere([
             'id' => $this->id,
             'job_card_id' => $this->job_card_id,
-            'item_id' => $this->item_id,
             'cost' => $this->cost,
             'warranty' => $this->warranty,
-            'warranty_type' => $this->warranty_type,
-            'status' => $this->status,
-            'current_location' => $this->current_location,
         ]);
 
         $query->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['like', 'item.name', $this->item_id]);
+        $query->andFilterWhere(['like', 'warranty_type.name', $this->warranty_type]);
+        $query->andFilterWhere(['like', 'status.name', $this->status]);
+        $query->andFilterWhere(['like', 'location.name', $this->current_location]);
+//        $query->andFilterWhere(['like', 'branch.name', $this->branch]);
+
 
         return $dataProvider;
     }

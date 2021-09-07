@@ -115,9 +115,11 @@ class JobCardItemsController extends Controller {
             }
         }
 
-        return $this->render('update', [
-                    'model' => $model,
-        ]);
+//        return $this->render('update', [
+//                    'model' => $model,
+//        ]);
+
+        return $this->render('update', ['model' => $model]);
     }
 
     /**

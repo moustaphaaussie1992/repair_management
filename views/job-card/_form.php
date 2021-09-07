@@ -3,13 +3,12 @@
 use app\models\Branch;
 use app\models\Customer;
 use app\models\JobCard;
+use app\models\Users;
 use kartik\widgets\Select2;
-use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\ActiveForm;
-use yii\widgets\Pjax;
 
 $this->title = 'New Job Card';
 
@@ -48,19 +47,28 @@ $this->title = 'New Job Card';
                 ])->label("Customer");
                 ?>
                 <?php
-//                $form->field($model, 'branch_id')->widget(Select2::classname(), [
-//                    'data' => ArrayHelper::map(Branch::find()->all(), 'id', function($model) {
-//                                return $model['name'];
-//                            }),
-//                    'options' => [
-////            'id' => 'test',
-//                        'placeholder' => Yii::t("app", "Select "),
-////            'dir' => 'rtl',
-//                    ],
-//                    'pluginOptions' => [
-//                        'allowClear' => true
-//                    ],
-//                ])->label("Branch");
+                $user = Users::findOne(["id" => Yii::$app->user->id]);
+
+                if (Users::isSupervisorRole()) {
+
+
+                    echo
+                    $form->field($model, 'branch_id')->widget(Select2::classname(), [
+                        'data' => ArrayHelper::map(Branch::find()->all(), 'id', function($model) {
+                                    return $model['name'];
+                                }),
+                        'options' => [
+                            'id' => 'test',
+                            'placeholder' => Yii::t("app", "Select "),
+                            'dir' => 'ltr',
+                        ],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ])->label("Branch");
+                }
+                ?>
+                <?php
                 ?>
                 <div class="form-group">
 

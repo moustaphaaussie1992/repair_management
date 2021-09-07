@@ -222,10 +222,10 @@ class SiteController extends Controller {
         }
 
         if (Users::isSupervisorRole()) {
-            return $this->render('index');
+            return $this->render('index-supervisor');
         }
         if (Users::isAdminRole()) {
-            return $this->render('index');
+            return $this->render('index-supervisor');
         }
 
         return $this->render('index');

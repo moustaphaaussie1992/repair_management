@@ -77,7 +77,7 @@ $this->title = 'Get4Less Repair Management System';
 
             <div class="col-md-6">
                 <?=
-                Html::a('<i class="	glyphicon glyphicon-send"></i><span class="count-name">Transfer To Service Center</span>', ['/job-card-items/transfer'], [
+                Html::a('<i class="	glyphicon glyphicon-send"></i><span class="count-name">Job Cards</span>', ['/job-card-items/index'], [
                     'class' => 'card-counter primary col-md-12',
                     'style' => ['border' => 'none']
                 ])
@@ -85,25 +85,6 @@ $this->title = 'Get4Less Repair Management System';
             </div>
 
 
-            <div class="col-md-6">
-                <?=
-                Html::a('<i class="	glyphicon glyphicon-ok"></i><span class="count-name">Ready Items</span>', ['/job-card-items/indexready'], [
-                    'class' => 'card-counter danger col-md-12',
-                    'style' => ['border' => 'none']
-                ])
-                ?>
-            </div>
-
-            <div class="col-md-6">
-                <?=
-                Html::a('<i class="	glyphicon glyphicon-ok"></i><span class="count-name">Recieve From Service</span>',
-                        ['/job-card-items/recieve'],
-                        [
-                            'class' => 'card-counter success col-md-12',
-                            'style' => ['border' => 'none']
-                ])
-                ?>
-            </div>
 
 
 
@@ -194,7 +175,7 @@ JSRegister::begin([
 //        var result = confirm("هل أنت متأكد؟");
 //        if (result) {
 //            $.ajax({
-//                url: '<?php // echo Url::toRoute("/site/send-message")  ?>',
+//                url: '<?php // echo Url::toRoute("/site/send-message")   ?>',
 //                type: "POST",
 //                data: {
 //                    'message': message,
