@@ -57,7 +57,7 @@ $this->title = 'Get4Less Repair Management System';
 
             <div class="col-md-6">
                 <?=
-                Html::a('<i class="glyphicon glyphicon-folder-open"></i><span class="count-name">New Customer</span>', ['/customer/create'], [
+                Html::a('<i class="glyphicon   glyphicon glyphicon-plus"></i><span class="count-name">New Customer</span>', ['/customer/create'], [
                     'class' => 'card-counter success col-md-12',
                     'style' => ['border' => 'none']
                 ])
@@ -66,7 +66,7 @@ $this->title = 'Get4Less Repair Management System';
 
             <div class="col-md-6">
                 <?=
-                Html::a('<i class="	glyphicon glyphicon-cog"></i><span class="count-name">New Job Record</span>', ['/job-card/create'], [
+                Html::a('<i class="glyphicon glyphicon-folder-open"></i><span class="count-name">New Job Record</span>', ['/job-card/create'], [
                     'class' => 'card-counter info col-md-12',
                     'style' => ['border' => 'none']
                 ])
@@ -77,7 +77,7 @@ $this->title = 'Get4Less Repair Management System';
 
             <div class="col-md-6">
                 <?=
-                Html::a('<i class="	glyphicon glyphicon-send"></i><span class="count-name">Job Cards</span>', ['/job-card-items/index'], [
+                Html::a('<i class="	glyphicon glyphicon-th-list"></i><span class="count-name">Job Cards</span>', ['/job-card-items/index'], [
                     'class' => 'card-counter primary col-md-12',
                     'style' => ['border' => 'none']
                 ])
@@ -175,7 +175,7 @@ JSRegister::begin([
 //        var result = confirm("هل أنت متأكد؟");
 //        if (result) {
 //            $.ajax({
-//                url: '<?php // echo Url::toRoute("/site/send-message")   ?>',
+//                url: '<?php // echo Url::toRoute("/site/send-message")      ?>',
 //                type: "POST",
 //                data: {
 //                    'message': message,

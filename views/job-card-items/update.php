@@ -42,9 +42,9 @@ $this->params['breadcrumbs'][] = 'Update';
         if (!$model->email_sent) {
 //             Html::Button('Request Cost Confirmation', ['class' => 'btn btn-correct  ']);
 
-            echo Html::a('<span class="glyphicon glyphicon-inbox"></span>', null, [
-                'class' => 'btn btn-primary btn-xs my-ajax send-email-button',
-                'style' => ' background-color: #337ab7 ',
+            echo Html::a('<span class="btn btn-success  " style="background-color: #28a745">Send Email & Save</span>', null, [
+                'class' => 'my-ajax send-email-button',
+                'style' => ' background-color: #28a745  ',
                 'title' => 'Send Confirmation Email',
                 'itemId' => $model->id
             ]);
