@@ -28,6 +28,7 @@ class JobCard extends ActiveRecord {
     const STATUS_UNDER_REPAIR = '1';
     const STATUS_FIXED = '2';
     const STATUS_UNFIXABLE = '3';
+    const STATUS_UNCONFIRMED = '4';
 
     /**
      * {@inheritdoc}

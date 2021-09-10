@@ -331,7 +331,7 @@ class JobCardController extends Controller {
             Yii::$app->mailer->compose()
                     ->setFrom('service.get4lessghana@gmail.com')
                     ->setTo($customer->email)
-                    ->setSubject("Item Ready")
+                    ->setSubject("Item Ready To Collect")
                     ->setTextBody($message)
                     ->send();
 //            return [
@@ -341,13 +341,13 @@ class JobCardController extends Controller {
 //            $message = Yii::$app->twilio->sms($customer->phone, $message, ['from' => '+16503185356']);
             $message = Yii::$app->twilio->sms($customer->phone, $message, ['from' => '+13302720108']);
 //, ['from' => '+16503185356']
-
-            Yii::$app->mailer->compose()
-                    ->setFrom('service.get4lessghana@gmail.com')
-                    ->setTo($customer->email)
-                    ->setSubject("Item Ready")
-                    ->setTextBody($message)
-                    ->send();
+//
+//            Yii::$app->mailer->compose()
+//                    ->setFrom('service.get4lessghana@gmail.com')
+//                    ->setTo($customer->email)
+//                    ->setSubject("Item Ready")
+//                    ->setTextBody($message)
+//                    ->send();
             $item->current_location = JobCard::LOCATION_BRANCH;
             $item->update();
             $item->save();
